@@ -1,399 +1,337 @@
 <!--
 ======================================================================
-  TEMPLATE — LANDING PAGE DE VENDA DIRETA  (CTA: WhatsApp)
-  Arquivo único, sem build, sem dependências pesadas. É só editar e subir.
+  TEMPLATE — LANDING PAGE DE VENDA DIRETA  (dark / workout · CTA WhatsApp)
+  Arquivo único, sem build. É só editar e subir.
 ======================================================================
 
   ┌────────────────────────────────────────────────────────────────┐
-  │  GUIA DE EDIÇÃO — troque só estes 5 pontos em toda LP nova:     │
+  │  GUIA DE EDIÇÃO — troque só estes pontos em toda LP nova:       │
   │                                                                  │
   │  1) NÚMERO DO WHATSAPP ...... busque  "EDITE AQUI: WHATSAPP"     │
-  │  2) CORES E FONTES .......... busque  ":root"  (logo abaixo)     │
+  │  2) COR DE ACENTO / FONTES .. busque  ":root"  (--acento)        │
   │  3) MARCA / LOGO ............ busque  "EDITE AQUI: MARCA"        │
-  │  4) IMAGENS ................. busque  "EDITE AQUI: IMAGEM"       │
-  │  5) TEXTOS DE VENDA ......... cada seção começa com "SEÇÃO: ..." │
+  │  4) IMAGENS/FOTOS .......... busque  "EDITE AQUI: FOTO"         │
+  │  5) TEXTOS ................. cada seção começa com "SEÇÃO: ..."  │
   │                                                                  │
-  │  Dica: no VSCode use Ctrl+F e procure por "EDITE AQUI".          │
+  │  Troque só --acento e a página inteira muda de cor.             │
   └────────────────────────────────────────────────────────────────┘
+
+  Design system: dark + acento vivo + tipografia condensada (Anton),
+  títulos bicolor, fotos full-bleed, ícones em acento, moldura no perímetro.
 -->
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<!-- EDITE AQUI: MARCA — título que aparece na aba do navegador e no Google -->
+<!-- EDITE AQUI: MARCA — título da aba / Google -->
 <title>Nome do Produto — Solução que resolve o problema do seu cliente</title>
-<meta name="description" content="Escreva aqui 1 frase de venda (aparece no Google). Ex: Resolvemos [problema] com [solução] — atendimento rápido pelo WhatsApp." />
+<meta name="description" content="Escreva 1 frase de venda (aparece no Google). Ex: Resolvemos [problema] com [solução] — atendimento rápido pelo WhatsApp." />
 
-<!-- Tipografia (Inter). Para deixar 100% offline, apague este <link> e o template
-     usa a fonte do sistema automaticamente. -->
+<!-- Fontes. Para 100% offline, apague este <link> (cai na fonte do sistema). -->
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
 <style>
-/* ==================================================================
-   2) CORES E FONTES  —  mude o visual inteiro editando só aqui
-   ================================================================== */
-:root {
-  /* CORES — troque a cor de destaque e a página toda muda de cara */
-  --cor-destaque:       #2563EB;   /* cor principal: botões, links, ícones */
-  --cor-destaque-hover: #1D4ED8;   /* mesma cor um tom mais escuro          */
-  --cor-destaque-suave: #EFF4FF;   /* fundo clarinho da cor de destaque     */
+/* ============ COR DE ACENTO E FONTES (mude tudo por aqui) ========= */
+:root{
+  --acento:      #C6F532;   /* << TROQUE AQUI: cor da marca (botões, títulos, ícones) */
+  --acento-2:    #B4E600;   /* mesmo tom, um pouco mais escuro (hover) */
+  --acento-suave:rgba(198,245,50,.14);
+  --txt-acento:  #0E0E0E;   /* cor do texto EM CIMA do acento (preto p/ cor clara; branco p/ cor escura) */
 
-  --cor-titulo:  #0B1220;          /* cor dos títulos                       */
-  --cor-texto:   #374151;          /* cor do texto normal                   */
-  --cor-suave:   #6B7280;          /* textos secundários / legendas         */
+  --bg:    #0E0E0E;         /* fundo base                  */
+  --bg-2:  #141414;         /* seções alternadas           */
+  --bg-3:  #1A1A1A;         /* cards                       */
+  --linha: #2A2A2A;         /* filetes/bordas              */
 
-  --cor-fundo:     #FFFFFF;        /* fundo padrão                          */
-  --cor-fundo-alt: #F6F8FC;        /* fundo das seções alternadas           */
-  --cor-borda:     #E7EBF1;        /* linhas e bordas                       */
-  --cor-escuro:    #0B1220;        /* fundo das seções escuras (oferta/CTA) */
+  --branco:#FFFFFF;
+  --texto: #C7C7C7;         /* corpo                       */
+  --suave: #9A9A9A;         /* legendas                    */
 
-  /* FONTES */
-  --fonte: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  /* tons opcionais p/ dar variação nos cards (troque à vontade) */
+  --c1:var(--acento); --c2:#12B0C9; --c3:#E5326E; --c4:#5FA82F; --c5:#C9A100;
 
-  /* FORMATO */
-  --raio:   16px;                  /* arredondamento dos cantos             */
-  --raio-p: 10px;
-  --sombra:    0 4px 24px rgba(16, 24, 40, .06);
-  --sombra-md: 0 12px 40px rgba(16, 24, 40, .10);
-  --largura: 1140px;               /* largura máxima do conteúdo            */
+  --display:'Anton', Impact, sans-serif;
+  --fonte:'Montserrat', system-ui, sans-serif;
+  --largura:1180px;
 }
 
-/* ---- Base (normalmente não precisa mexer daqui pra baixo) ---------- */
-*,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-body {
-  font-family: var(--fonte);
-  color: var(--cor-texto);
-  background: var(--cor-fundo);
-  line-height: 1.6;
-  -webkit-font-smoothing: antialiased;
-}
-img { max-width: 100%; display: block; }
-a { color: inherit; text-decoration: none; }
-h1,h2,h3 { color: var(--cor-titulo); line-height: 1.15; font-weight: 800; letter-spacing: -.02em; }
-section { padding: 84px 0; }
-.wrap { width: 100%; max-width: var(--largura); margin: 0 auto; padding: 0 22px; }
-.centro { text-align: center; max-width: 720px; margin: 0 auto 52px; }
-.selo {
-  display: inline-block; font-size: .8rem; font-weight: 700; letter-spacing: .04em;
-  text-transform: uppercase; color: var(--cor-destaque);
-  background: var(--cor-destaque-suave); padding: 7px 14px; border-radius: 999px; margin-bottom: 18px;
-}
-h2 { font-size: clamp(1.7rem, 4vw, 2.5rem); }
-.sub { color: var(--cor-suave); font-size: 1.08rem; margin-top: 14px; }
-.alt { background: var(--cor-fundo-alt); }
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--fonte);background:var(--bg);color:var(--texto);line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+section{padding:90px 0}
+.wrap{width:100%;max-width:var(--largura);margin:0 auto;padding:0 24px}
+.centro{text-align:center;max-width:760px;margin:0 auto 56px}
 
-/* ---- Botões ------------------------------------------------------- */
-.btn {
-  display: inline-flex; align-items: center; gap: 10px; cursor: pointer;
-  font-family: inherit; font-size: 1.02rem; font-weight: 700; border: 0;
-  padding: 16px 30px; border-radius: var(--raio-p); transition: transform .15s, box-shadow .15s, background .15s;
-}
-.btn-principal { background: var(--cor-destaque); color: #fff; box-shadow: 0 8px 22px rgba(37,99,235,.28); }
-.btn-principal:hover { background: var(--cor-destaque-hover); transform: translateY(-2px); box-shadow: 0 12px 28px rgba(37,99,235,.36); }
-.btn-fantasma { background: transparent; color: var(--cor-titulo); border: 1.5px solid var(--cor-borda); }
-.btn-fantasma:hover { border-color: var(--cor-destaque); color: var(--cor-destaque); }
-.btn-claro { background: #fff; color: var(--cor-titulo); }
-.btn-claro:hover { transform: translateY(-2px); box-shadow: var(--sombra-md); }
+/* Títulos display (Anton) — caixa alta, bicolor com <span class="ac"> */
+h1,h2{font-family:var(--display);font-weight:400;text-transform:uppercase;color:var(--branco);line-height:.98;letter-spacing:.01em}
+h1{font-size:clamp(2.8rem,7vw,5rem)}
+h2{font-size:clamp(2rem,5vw,3.4rem)}
+.ac{color:var(--acento)}
 
-/* ---- Header ------------------------------------------------------- */
-.header {
-  position: sticky; top: 0; z-index: 50; background: rgba(255,255,255,.85);
-  backdrop-filter: saturate(180%) blur(12px); border-bottom: 1px solid var(--cor-borda);
-}
-.header .wrap { display: flex; align-items: center; justify-content: space-between; height: 68px; }
-.logo { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 1.2rem; color: var(--cor-titulo); }
-.logo .marca { width: 34px; height: 34px; border-radius: 9px; background: var(--cor-destaque); color:#fff; display:grid; place-items:center; font-size:1rem; }
-.nav { display: flex; align-items: center; gap: 28px; }
-.nav a { color: var(--cor-suave); font-weight: 500; font-size: .96rem; }
-.nav a:hover { color: var(--cor-titulo); }
-.header .btn { padding: 11px 22px; font-size: .95rem; }
-@media (max-width: 860px){ .nav { display: none; } }
+.eyebrow{display:inline-flex;align-items:center;gap:12px;font-weight:700;font-size:.82rem;letter-spacing:.18em;text-transform:uppercase;color:var(--acento);margin-bottom:20px}
+.eyebrow::before{content:"";width:34px;height:2px;background:var(--acento);display:inline-block}
+.centro .eyebrow::before,.eyebrow.mid::before{display:none}
+.sub{color:var(--suave);font-size:1.06rem;margin-top:18px}
 
-/* ---- Hero --------------------------------------------------------- */
-.hero { padding: 72px 0 64px; }
-.hero .wrap { display: grid; grid-template-columns: 1.05fr .95fr; gap: 48px; align-items: start; }
-.hero h1 { font-size: clamp(2.1rem, 5.2vw, 3.4rem); }
-.hero p.lead { font-size: 1.18rem; color: var(--cor-texto); margin: 20px 0 30px; max-width: 540px; }
-.hero .acoes { display: flex; gap: 14px; flex-wrap: wrap; }
-.hero .reforco { margin-top: 22px; font-size: .92rem; color: var(--cor-suave); display:flex; align-items:center; gap:8px; }
-.hero-img { border-radius: var(--raio); box-shadow: var(--sombra-md); object-fit: cover; width: 100%;
-  height: 420px; align-self: center;
-  background: linear-gradient(135deg, var(--cor-destaque-suave), #fff); }
-@media (max-width: 860px){ .hero-img { height: 300px; } }
-@media (max-width: 860px){ .hero .wrap { grid-template-columns: 1fr; } .hero-img { order: -1; } }
+/* Moldura no perímetro (assinatura do design). Remova .frame se não quiser. */
+.frame{position:fixed;inset:12px;border:2px solid var(--acento);border-radius:2px;pointer-events:none;z-index:80}
+@media(max-width:640px){.frame{inset:7px}}
 
-/* ---- Barra de métricas -------------------------------------------- */
-.metricas { display: grid; grid-template-columns: repeat(4,1fr); gap: 24px; text-align:center; margin: 12px 0;
-  border: 1px solid var(--cor-borda); border-radius: var(--raio); padding: 30px 20px; background:#fff; box-shadow: var(--sombra); }
-.metricas .n { font-size: 2rem; font-weight: 800; color: var(--cor-titulo); }
-.metricas .l { font-size: .9rem; color: var(--cor-suave); }
-@media (max-width: 700px){ .metricas { grid-template-columns: repeat(2,1fr); gap: 26px 16px; } }
+/* ============ BOTÕES ============ */
+.btn{display:inline-flex;align-items:center;gap:10px;cursor:pointer;font-family:inherit;font-weight:700;font-size:.9rem;letter-spacing:.06em;text-transform:uppercase;border:0;padding:16px 30px;border-radius:4px;transition:transform .15s,background .15s,box-shadow .15s,color .15s}
+.btn-principal{background:var(--acento);color:var(--txt-acento);box-shadow:0 6px 24px var(--acento-suave)}
+.btn-principal:hover{background:var(--acento-2);transform:translateY(-2px)}
+.btn-outline{background:transparent;color:var(--branco);border:1.6px solid rgba(255,255,255,.32)}
+.btn-outline:hover{border-color:var(--acento);color:var(--acento)}
 
-/* ---- Grades de cards ---------------------------------------------- */
-.grid-3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; }
-.grid-2 { display: grid; grid-template-columns: repeat(2,1fr); gap: 24px; }
-@media (max-width: 860px){ .grid-3, .grid-2 { grid-template-columns: 1fr; } }
-.card { background:#fff; border: 1px solid var(--cor-borda); border-radius: var(--raio); padding: 30px; box-shadow: var(--sombra); transition: transform .18s, box-shadow .18s; }
-.card:hover { transform: translateY(-4px); box-shadow: var(--sombra-md); }
-.card .ico { width: 52px; height: 52px; border-radius: 13px; background: var(--cor-destaque-suave); display:grid; place-items:center; font-size:1.5rem; margin-bottom: 18px; }
-.card h3 { font-size: 1.2rem; margin-bottom: 8px; }
-.card p { color: var(--cor-suave); font-size: .98rem; }
+/* ============ HEADER ============ */
+.header{position:sticky;top:0;z-index:70;background:rgba(14,14,14,.82);backdrop-filter:saturate(160%) blur(12px);border-bottom:1px solid var(--linha)}
+.header .wrap{display:flex;align-items:center;justify-content:space-between;height:74px}
+.logo{display:flex;align-items:center;gap:11px;font-family:var(--display);text-transform:uppercase;font-size:1.35rem;color:#fff;letter-spacing:.02em}
+.logo .mono{width:38px;height:38px;border:2px solid var(--acento);color:var(--acento);display:grid;place-items:center;font-size:1.15rem;transform:skewX(-8deg)}
+.logo small{display:block;font-family:var(--fonte);font-size:.6rem;letter-spacing:.3em;color:var(--acento);font-weight:700}
+.nav{display:flex;align-items:center;gap:30px}
+.nav a{color:#cfcfcf;font-weight:600;font-size:.82rem;letter-spacing:.08em;text-transform:uppercase}
+.nav a:hover{color:var(--acento)}
+.header .btn{padding:11px 22px}
+@media(max-width:900px){.nav{display:none}}
 
-/* ---- Passos ------------------------------------------------------- */
-.passos { display: grid; grid-template-columns: repeat(3,1fr); gap: 30px; counter-reset: p; }
-@media (max-width: 860px){ .passos { grid-template-columns: 1fr; } }
-.passo { position: relative; padding-left: 4px; }
-.passo .num { width: 46px; height: 46px; border-radius: 50%; background: var(--cor-destaque); color:#fff; font-weight:800; display:grid; place-items:center; margin-bottom:16px; }
-.passo h3 { font-size: 1.15rem; margin-bottom: 6px; }
-.passo p { color: var(--cor-suave); }
+/* ============ HERO ============ */
+.hero{position:relative;padding:70px 0 80px;overflow:hidden}
+.hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center;position:relative;z-index:2}
+.hero .lead{font-size:1.14rem;color:#d8d8d8;max-width:520px;margin:22px 0 32px}
+.hero .acoes{display:flex;gap:14px;flex-wrap:wrap}
+.hero .reforco{margin-top:24px;font-size:.86rem;color:var(--suave)}
+.hero-foto{position:relative;height:520px;border-radius:4px;overflow:hidden;width:100%;
+  background:radial-gradient(120% 90% at 70% 20%,var(--acento-suave),transparent 55%),linear-gradient(160deg,#1c1c1c,#0b0b0b);
+  box-shadow:0 30px 60px rgba(0,0,0,.5)}
+.hero-foto::after{content:"FOTO PRINCIPAL";position:absolute;inset:0;display:grid;place-items:center;color:#3a3a3a;font-weight:700;letter-spacing:.15em;font-size:.75rem}
+.social-rail{position:absolute;left:0;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:16px;z-index:3}
+.social-rail a{color:#8a8a8a;font-size:1rem}.social-rail a:hover{color:var(--acento)}
+.social-rail::after{content:"";width:1px;height:60px;background:var(--linha);margin:6px auto 0}
+@media(max-width:900px){.hero .wrap{grid-template-columns:1fr}.hero-foto{height:340px;order:-1}.social-rail{display:none}}
 
-/* ---- Depoimentos -------------------------------------------------- */
-.depo { background:#fff; border:1px solid var(--cor-borda); border-radius: var(--raio); padding: 28px; box-shadow: var(--sombra); }
-.depo .estrelas { color:#F59E0B; margin-bottom: 12px; letter-spacing: 2px; }
-.depo p { font-size: 1.02rem; color: var(--cor-texto); }
-.depo .autor { display:flex; align-items:center; gap:12px; margin-top: 18px; }
-.depo .av { width:44px; height:44px; border-radius:50%; background: var(--cor-destaque-suave); display:grid; place-items:center; font-weight:700; color: var(--cor-destaque); }
-.depo .autor b { color: var(--cor-titulo); display:block; font-size:.96rem; }
-.depo .autor span { color: var(--cor-suave); font-size:.85rem; }
+/* ============ MÉTRICAS ============ */
+.metricas{background:var(--bg-2);border-top:1px solid var(--linha);border-bottom:1px solid var(--linha)}
+.metricas .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;padding:40px 24px;text-align:center}
+.metricas .n{font-family:var(--display);font-size:2.4rem;color:var(--acento);line-height:1}
+.metricas .l{font-size:.82rem;letter-spacing:.1em;text-transform:uppercase;color:var(--suave);margin-top:8px}
+.metricas .cel+.cel{border-left:1px solid var(--linha)}
+@media(max-width:720px){.metricas .wrap{grid-template-columns:repeat(2,1fr);gap:32px 16px}.metricas .cel:nth-child(3){border-left:0}}
 
-/* ---- Oferta (seção escura) ---------------------------------------- */
-.oferta { background: var(--cor-escuro); color:#fff; }
-.oferta h2, .oferta h3 { color:#fff; }
-.oferta .sub { color: rgba(255,255,255,.7); }
-.plano { max-width: 480px; margin: 0 auto; background:#fff; color: var(--cor-texto); border-radius: var(--raio); padding: 40px; box-shadow: var(--sombra-md); }
-.plano .de { color: var(--cor-suave); text-decoration: line-through; font-size: 1.05rem; }
-.plano .por { font-size: 3rem; font-weight: 800; color: var(--cor-titulo); line-height: 1; margin: 4px 0 4px; }
-.plano .por small { font-size: 1rem; font-weight: 600; color: var(--cor-suave); }
-.plano ul { list-style: none; margin: 26px 0; text-align:left; display:grid; gap: 13px; }
-.plano li { display:flex; gap:11px; align-items:flex-start; }
-.plano li::before { content:"✓"; color: var(--cor-destaque); font-weight:800; }
-.plano .btn { width: 100%; justify-content: center; }
-.badge-topo { display:inline-block; background: var(--cor-destaque); color:#fff; font-weight:700; font-size:.78rem; letter-spacing:.05em; text-transform:uppercase; padding:6px 14px; border-radius:999px; margin-bottom: 18px; }
+/* ============ STORY ============ */
+.story .wrap{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.story-foto{position:relative;height:420px;border-radius:4px;overflow:hidden;
+  background:radial-gradient(100% 100% at 30% 30%,var(--acento-suave),transparent 60%),linear-gradient(160deg,#1e1e1e,#0a0a0a)}
+.play{position:absolute;inset:0;margin:auto;width:76px;height:76px;border:2px solid var(--acento);border-radius:50%;display:grid;place-items:center;color:var(--acento);font-size:1.4rem;background:rgba(0,0,0,.3)}
+@media(max-width:860px){.story .wrap{grid-template-columns:1fr}.story-foto{height:280px}}
 
-/* ---- Garantia ----------------------------------------------------- */
-.garantia { display:flex; align-items:center; gap: 28px; background: var(--cor-destaque-suave); border-radius: var(--raio); padding: 36px 40px; }
-.garantia .med { font-size: 3.4rem; }
-.garantia h3 { font-size: 1.3rem; margin-bottom: 6px; }
-.garantia p { color: var(--cor-texto); }
-@media (max-width: 640px){ .garantia { flex-direction: column; text-align:center; } }
+/* ============ FEATURES ============ */
+.features{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--linha);border-radius:4px;overflow:hidden}
+.feat{padding:40px 28px;text-align:center;border-left:1px solid var(--linha)}
+.feat:first-child{border-left:0}
+.feat .ico{font-size:2rem;margin-bottom:16px;color:var(--ac,var(--acento))}
+.feat h3{font-family:var(--display);text-transform:uppercase;color:#fff;font-size:1.25rem;letter-spacing:.02em;margin-bottom:10px}
+.feat p{font-size:.94rem;color:var(--suave)}
+@media(max-width:860px){.features{grid-template-columns:1fr 1fr}.feat:nth-child(3){border-left:0}}
+@media(max-width:520px){.features{grid-template-columns:1fr}.feat{border-left:0;border-top:1px solid var(--linha)}.feat:first-child{border-top:0}}
 
-/* ---- FAQ (sem JS, usa <details>) ---------------------------------- */
-.faq { max-width: 760px; margin: 0 auto; }
-.faq details { border:1px solid var(--cor-borda); border-radius: var(--raio-p); margin-bottom: 12px; background:#fff; overflow:hidden; }
-.faq summary { list-style:none; cursor:pointer; padding: 20px 24px; font-weight:600; color: var(--cor-titulo); display:flex; justify-content:space-between; align-items:center; gap:12px; }
-.faq summary::-webkit-details-marker { display:none; }
-.faq summary::after { content:"+"; font-size:1.5rem; color: var(--cor-destaque); font-weight:400; transition: transform .2s; }
-.faq details[open] summary::after { transform: rotate(45deg); }
-.faq details p { padding: 0 24px 22px; color: var(--cor-suave); }
+/* ============ CTA full-bleed ============ */
+.cta-band{position:relative;padding:100px 0;background:
+  linear-gradient(90deg,rgba(10,10,10,.94) 30%,rgba(10,10,10,.55)),
+  radial-gradient(100% 140% at 85% 50%,var(--acento-suave),transparent 55%),
+  linear-gradient(160deg,#191919,#0a0a0a)}
+.cta-band h2{max-width:640px}
+.cta-band p{color:#d3d3d3;margin:18px 0 30px;font-size:1.1rem;max-width:520px}
 
-/* ---- CTA final ---------------------------------------------------- */
-.cta-final { background: linear-gradient(135deg, var(--cor-destaque), var(--cor-destaque-hover)); color:#fff; text-align:center; border-radius: var(--raio); padding: 60px 30px; }
-.cta-final h2 { color:#fff; }
-.cta-final p { color: rgba(255,255,255,.85); margin: 14px 0 30px; font-size:1.1rem; }
+/* ============ CARDS (produtos/serviços) ============ */
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.card{background:var(--bg-3);border:1px solid var(--linha);border-radius:6px;overflow:hidden;transition:transform .18s,border-color .18s}
+.card:hover{transform:translateY(-4px);border-color:var(--acento)}
+.card .capa{height:120px;display:grid;place-items:center;font-size:2.4rem;background:linear-gradient(160deg,var(--tint,var(--acento-suave)),transparent),#161616;border-bottom:1px solid var(--linha)}
+.card .corpo{padding:22px 22px 24px}
+.card .cat{color:var(--acento);font-weight:700;letter-spacing:.1em;text-transform:uppercase;font-size:.82rem;margin-bottom:8px}
+.card h3{color:#fff;font-size:1.15rem;margin-bottom:8px;font-weight:700}
+.card p{color:var(--suave);font-size:.92rem}
+.card .meta{margin-top:14px;font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;color:#7d7d7d;display:flex;gap:8px;align-items:center}
+@media(max-width:860px){.cards{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.cards{grid-template-columns:1fr}}
 
-/* ---- Rodapé ------------------------------------------------------- */
-.footer { background: var(--cor-escuro); color: rgba(255,255,255,.65); padding: 56px 0 30px; }
-.footer .wrap { display:flex; justify-content:space-between; gap:30px; flex-wrap:wrap; }
-.footer .logo { color:#fff; margin-bottom: 12px; }
-.footer a { color: rgba(255,255,255,.65); }
-.footer a:hover { color:#fff; }
-.footer .col h4 { color:#fff; font-size:.95rem; margin-bottom:12px; }
-.footer .col p, .footer .col a { display:block; font-size:.92rem; margin-bottom:8px; }
-.footer .base { border-top:1px solid rgba(255,255,255,.12); margin-top:36px; padding-top:22px; font-size:.85rem; text-align:center; }
+/* ============ OFERTA ============ */
+.oferta{background:var(--bg-2)}
+.plano{max-width:560px;margin:0 auto;background:linear-gradient(160deg,#1c1c1c,#121212);border:1px solid var(--linha);border-top:3px solid var(--acento);border-radius:6px;padding:44px 40px;text-align:center}
+.badge{display:inline-block;background:var(--acento);color:var(--txt-acento);font-weight:700;font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;padding:6px 16px;border-radius:3px;margin-bottom:20px}
+.plano .preco{font-family:var(--display);color:#fff;font-size:3.2rem;line-height:1;margin:6px 0}
+.plano .preco small{font-family:var(--fonte);font-size:1rem;font-weight:600;color:var(--suave)}
+.plano .de{color:var(--suave);text-decoration:line-through}
+.plano ul{list-style:none;margin:26px 0;text-align:left;display:grid;gap:13px;max-width:400px;margin-left:auto;margin-right:auto}
+.plano li{display:flex;gap:12px;color:#ddd;font-size:.98rem}
+.plano li::before{content:"✓";color:var(--acento);font-weight:800}
+.plano .btn{width:100%;justify-content:center}
+.plano .obs{margin-top:14px;font-size:.8rem;color:var(--suave)}
 
-/* ---- Botão flutuante de WhatsApp ---------------------------------- */
-.flutuante { position: fixed; bottom: 22px; right: 22px; z-index: 60; background:#25D366; color:#fff; width:60px; height:60px; border-radius:50%; display:grid; place-items:center; box-shadow: 0 8px 24px rgba(0,0,0,.22); font-size:1.7rem; transition: transform .15s; }
-.flutuante:hover { transform: scale(1.08); }
+/* ============ ASSINATURA ============ */
+.assinatura .box{border:1px solid var(--acento);border-radius:6px;padding:44px 40px;text-align:center;background:var(--acento-suave)}
+.assinatura .box h2{font-size:clamp(1.6rem,3.6vw,2.3rem)}
+.assinatura .box p{color:#e0e0e0;font-size:1.12rem;max-width:720px;margin:16px auto 0}
 
-/* ---- Animação de entrada (sutil) ---------------------------------- */
-.reveal { opacity:0; transform: translateY(22px); transition: opacity .6s ease, transform .6s ease; }
-.reveal.show { opacity:1; transform:none; }
-@media (prefers-reduced-motion: reduce){ .reveal { opacity:1; transform:none; } html{scroll-behavior:auto;} }
+/* ============ FAQ ============ */
+.faq{max-width:800px;margin:0 auto}
+.faq details{border:1px solid var(--linha);border-radius:5px;margin-bottom:12px;background:var(--bg-3);overflow:hidden}
+.faq summary{list-style:none;cursor:pointer;padding:20px 24px;font-weight:700;color:#fff;display:flex;justify-content:space-between;gap:14px;align-items:center}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";color:var(--acento);font-size:1.5rem;transition:transform .2s}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq details p{padding:0 24px 22px;color:var(--suave)}
+
+/* ============ CTA FINAL ============ */
+.final{text-align:center;background:radial-gradient(80% 120% at 50% 0%,var(--acento-suave),transparent 60%),var(--bg-2);border-top:1px solid var(--linha)}
+.final h2{max-width:820px;margin:0 auto}
+.final p{color:#d3d3d3;margin:16px auto 30px;font-size:1.1rem;max-width:560px}
+
+/* ============ RODAPÉ ============ */
+.footer{background:#080808;border-top:1px solid var(--linha);padding:60px 0 30px}
+.footer .wrap{display:flex;justify-content:space-between;gap:36px;flex-wrap:wrap}
+.footer .logo{margin-bottom:14px}
+.footer p,.footer a{font-size:.9rem;color:#9a9a9a}
+.footer a:hover{color:var(--acento)}
+.footer .col h4{color:#fff;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:14px}
+.footer .col a,.footer .col p{display:block;margin-bottom:9px}
+.footer .base{border-top:1px solid var(--linha);margin-top:38px;padding-top:22px;text-align:center;font-size:.82rem;color:#6f6f6f}
+
+/* ============ WhatsApp flutuante ============ */
+.flutuante{position:fixed;bottom:24px;right:24px;z-index:75;background:#25D366;color:#fff;width:60px;height:60px;border-radius:50%;display:grid;place-items:center;font-size:1.7rem;box-shadow:0 8px 24px rgba(0,0,0,.4);transition:transform .15s}
+.flutuante:hover{transform:scale(1.08)}
+
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .6s,transform .6s}
+.reveal.show{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none}html{scroll-behavior:auto}}
 </style>
 
+<div class="frame"></div>
 
-<!-- ================================================================
-     HEADER
-     ================================================================ -->
+<!-- ================= HEADER ================= -->
 <header class="header">
   <div class="wrap">
-    <!-- EDITE AQUI: MARCA — troque a inicial e o nome (ou coloque uma <img> do logo) -->
-    <a href="#" class="logo"><span class="marca">N</span> NomeDaMarca</a>
+    <!-- EDITE AQUI: MARCA -->
+    <a href="#" class="logo"><span class="mono">N</span> <span>NomeDaMarca<small>Sua tagline</small></span></a>
     <nav class="nav">
-      <a href="#beneficios">Benefícios</a>
-      <a href="#como">Como funciona</a>
-      <a href="#depoimentos">Depoimentos</a>
-      <a href="#oferta">Preço</a>
+      <a href="#produtos">Produtos</a>
+      <a href="#porque">Por que nós</a>
+      <a href="#oferta">Oferta</a>
       <a href="#faq">Dúvidas</a>
     </nav>
     <a class="btn btn-principal btn-wpp">Falar no WhatsApp</a>
   </div>
 </header>
 
-
-<!-- ================================================================
-     SEÇÃO: HERO  |  edite: headline, subtítulo e imagem principal
-     ================================================================ -->
+<!-- ================= SEÇÃO: HERO ================= -->
 <section class="hero">
+  <div class="social-rail">
+    <a href="#" aria-label="Instagram">◎</a><a href="#" aria-label="Facebook">f</a>
+    <a href="#" class="btn-wpp" style="cursor:pointer" aria-label="WhatsApp">✆</a>
+  </div>
   <div class="wrap">
     <div class="reveal">
-      <span class="selo">Oferta por tempo limitado</span>
-      <h1>A frase que promete o resultado que seu cliente quer</h1>
-      <p class="lead">Explique em 1 ou 2 linhas COMO você entrega esse resultado e por que é diferente. Foque na dor que resolve, não nas características.</p>
+      <span class="eyebrow">Seu diferencial em uma linha</span>
+      <h1>A frase que promete<br><span class="ac">o resultado</span></h1>
+      <p class="lead">Explique em 1 ou 2 linhas COMO você entrega esse resultado e por que é diferente. Foque na dor que resolve — não nas características.</p>
       <div class="acoes">
-        <a class="btn btn-principal btn-wpp">💬 Quero começar agora</a>
-        <a class="btn btn-fantasma" href="#como">Ver como funciona</a>
+        <a class="btn btn-principal btn-wpp">Começar agora →</a>
+        <a class="btn btn-outline" href="#porque">Saiba mais</a>
       </div>
-      <div class="reforco">✅ Resposta rápida no WhatsApp • Sem compromisso</div>
+      <div class="reforco">Resposta rápida no WhatsApp · Sem compromisso</div>
     </div>
-    <!-- EDITE AQUI: IMAGEM — troque o src por uma foto/mockup do seu produto -->
-    <img class="hero-img" src="" alt="Imagem do produto"
-         onerror="this.style.background='linear-gradient(135deg,var(--cor-destaque-suave),#fff)';this.removeAttribute('src');" />
+    <!-- EDITE AQUI: FOTO — troque por uma foto/mockup do produto -->
+    <div class="hero-foto reveal"></div>
   </div>
 </section>
 
-
-<!-- ================================================================
-     SEÇÃO: MÉTRICAS  |  edite: seus números de prova
-     ================================================================ -->
-<div class="wrap">
-  <div class="metricas reveal">
-    <div><div class="n">+2.500</div><div class="l">Clientes atendidos</div></div>
-    <div><div class="n">4,9★</div><div class="l">Avaliação média</div></div>
-    <div><div class="n">+8 anos</div><div class="l">De experiência</div></div>
-    <div><div class="n">98%</div><div class="l">Recomendariam</div></div>
+<!-- ================= SEÇÃO: MÉTRICAS ================= -->
+<div class="metricas">
+  <div class="wrap reveal">
+    <div class="cel"><div class="n">+2.500</div><div class="l">Clientes</div></div>
+    <div class="cel"><div class="n">4,9★</div><div class="l">Avaliação</div></div>
+    <div class="cel"><div class="n">+8 anos</div><div class="l">Experiência</div></div>
+    <div class="cel"><div class="n">98%</div><div class="l">Recomendam</div></div>
   </div>
 </div>
 
+<!-- ================= SEÇÃO: SOBRE / HISTÓRIA ================= -->
+<section class="story">
+  <div class="wrap">
+    <!-- EDITE AQUI: FOTO -->
+    <div class="story-foto reveal"><div class="play">▶</div></div>
+    <div class="reveal">
+      <span class="eyebrow">Nossa história</span>
+      <h2>Construído pra<br><span class="ac">entregar resultado</span></h2>
+      <p class="sub">Conte em poucas linhas quem você é, por que faz o que faz e a transformação que gera. Use linguagem simples e direta, focada no cliente.</p>
+      <div style="margin-top:28px"><a class="btn btn-outline" href="#produtos">Ver produtos</a></div>
+    </div>
+  </div>
+</section>
 
-<!-- ================================================================
-     SEÇÃO: DOR / PROBLEMA  |  edite: agite o problema do cliente
-     ================================================================ -->
-<section>
+<!-- ================= SEÇÃO: POR QUE ESCOLHER ================= -->
+<section id="porque">
   <div class="wrap">
     <div class="centro reveal">
-      <span class="selo">Reconhece isso?</span>
-      <h2>O problema que está custando tempo, dinheiro ou tranquilidade</h2>
-      <p class="sub">Descreva a situação frustrante que seu cliente vive HOJE. Quanto mais ele se reconhecer, mais forte fica a sua solução logo abaixo.</p>
+      <span class="eyebrow">Por que escolher</span>
+      <h2>Tudo o que você <span class="ac">ganha</span></h2>
     </div>
-    <div class="grid-3">
-      <div class="card reveal"><div class="ico">😩</div><h3>Primeira dor</h3><p>Descreva um incômodo concreto que o cliente sente e as consequências dele.</p></div>
-      <div class="card reveal"><div class="ico">⏳</div><h3>Segunda dor</h3><p>Outro problema comum — algo que ele já tentou resolver e não deu certo.</p></div>
-      <div class="card reveal"><div class="ico">💸</div><h3>Terceira dor</h3><p>O custo de continuar do jeito que está. Perda de dinheiro, tempo ou oportunidade.</p></div>
-    </div>
-  </div>
-</section>
-
-
-<!-- ================================================================
-     SEÇÃO: SOLUÇÃO  |  edite: apresente sua oferta como a virada
-     ================================================================ -->
-<section class="alt">
-  <div class="wrap">
-    <div class="grid-2" style="align-items:center; gap:48px;">
-      <!-- EDITE AQUI: IMAGEM -->
-      <img class="hero-img reveal" src="" alt="Sua solução"
-           onerror="this.style.background='linear-gradient(135deg,var(--cor-destaque-suave),#fff)';this.removeAttribute('src');" />
-      <div class="reveal">
-        <span class="selo">A solução</span>
-        <h2>Apresente seu produto como a virada de chave</h2>
-        <p class="sub">Em 2 ou 3 frases, diga o que é o seu produto/serviço e a transformação que ele gera. Use linguagem simples e direta.</p>
-        <div class="acoes" style="margin-top:26px;">
-          <a class="btn btn-principal btn-wpp">Quero saber mais</a>
-        </div>
-      </div>
+    <div class="features reveal">
+      <div class="feat" style="--ac:var(--c1)"><div class="ico">⚡</div><h3>Benefício 1</h3><p>Ganho claro em 1 frase. Comece com um verbo: economize, ganhe, evite.</p></div>
+      <div class="feat" style="--ac:var(--c2)"><div class="ico">🎯</div><h3>Benefício 2</h3><p>Foque no que muda na vida ou no negócio do cliente.</p></div>
+      <div class="feat" style="--ac:var(--c3)"><div class="ico">🛡️</div><h3>Benefício 3</h3><p>Reforce confiança, garantia ou suporte.</p></div>
+      <div class="feat" style="--ac:var(--c4)"><div class="ico">🚀</div><h3>Benefício 4</h3><p>Mostre que começar é simples — sem burocracia.</p></div>
     </div>
   </div>
 </section>
 
+<!-- ================= SEÇÃO: CTA BAND ================= -->
+<section class="cta-band">
+  <div class="wrap reveal">
+    <span class="eyebrow">Chamada de impacto</span>
+    <h2>Seu único limite<br><span class="ac">é você</span></h2>
+    <p>Reforce a promessa e crie urgência aqui. Uma linha forte que empurra pra ação.</p>
+    <a class="btn btn-principal btn-wpp">Quero começar →</a>
+  </div>
+</section>
 
-<!-- ================================================================
-     SEÇÃO: BENEFÍCIOS  |  edite: 6 ganhos claros (foco no cliente)
-     ================================================================ -->
-<section id="beneficios">
+<!-- ================= SEÇÃO: PRODUTOS / SERVIÇOS ================= -->
+<section id="produtos">
   <div class="wrap">
     <div class="centro reveal">
-      <span class="selo">Por que escolher</span>
-      <h2>Tudo o que você ganha ao começar</h2>
-      <p class="sub">Liste benefícios (o que o cliente ganha), não características (o que o produto tem).</p>
+      <span class="eyebrow">O que oferecemos</span>
+      <h2>Nossos <span class="ac">produtos</span></h2>
+      <p class="sub">Apresente seus produtos ou serviços — o que cada um resolve.</p>
     </div>
-    <div class="grid-3">
-      <div class="card reveal"><div class="ico">⚡</div><h3>Benefício rápido</h3><p>Explique o ganho em 1 frase. Comece com um verbo: economize, ganhe, evite...</p></div>
-      <div class="card reveal"><div class="ico">🎯</div><h3>Resultado claro</h3><p>Foque no que muda na vida ou no negócio do cliente.</p></div>
-      <div class="card reveal"><div class="ico">🛡️</div><h3>Segurança</h3><p>Reforce confiança, garantia ou suporte.</p></div>
-      <div class="card reveal"><div class="ico">💰</div><h3>Custo-benefício</h3><p>Mostre que o retorno vale muito mais que o investimento.</p></div>
-      <div class="card reveal"><div class="ico">🤝</div><h3>Atendimento</h3><p>Destaque o atendimento próximo e humano pelo WhatsApp.</p></div>
-      <div class="card reveal"><div class="ico">🚀</div><h3>Facilidade</h3><p>Mostre como é simples começar — sem burocracia.</p></div>
-    </div>
-  </div>
-</section>
-
-
-<!-- ================================================================
-     SEÇÃO: COMO FUNCIONA  |  edite: 3 passos simples
-     ================================================================ -->
-<section id="como" class="alt">
-  <div class="wrap">
-    <div class="centro reveal">
-      <span class="selo">Simples assim</span>
-      <h2>Comece em 3 passos</h2>
-    </div>
-    <div class="passos">
-      <div class="passo reveal"><div class="num">1</div><h3>Fale com a gente</h3><p>Clique no botão e chame no WhatsApp. Entendemos sua necessidade.</p></div>
-      <div class="passo reveal"><div class="num">2</div><h3>Receba a proposta</h3><p>Montamos a melhor solução pro seu caso, sem enrolação.</p></div>
-      <div class="passo reveal"><div class="num">3</div><h3>Aproveite o resultado</h3><p>Comece a usar e sinta a diferença desde o primeiro dia.</p></div>
+    <div class="cards">
+      <div class="card reveal" style="--tint:var(--acento-suave)"><div class="capa">📦</div><div class="corpo"><div class="cat">Categoria</div><h3>Produto um</h3><p>Descreva em 1 frase o que este produto entrega ao cliente.</p><div class="meta">🕐 Destaque</div></div></div>
+      <div class="card reveal" style="--tint:rgba(18,176,201,.20)"><div class="capa">⭐</div><div class="corpo"><div class="cat">Categoria</div><h3>Produto dois</h3><p>Outro benefício ou serviço. Mantenha curto e direto.</p><div class="meta">🕐 Destaque</div></div></div>
+      <div class="card reveal" style="--tint:rgba(229,50,110,.20)"><div class="capa">🔥</div><div class="corpo"><div class="cat">Categoria</div><h3>Produto três</h3><p>Terceiro item. Use ícone/emoji que combine com o tema.</p><div class="meta">🕐 Destaque</div></div></div>
+      <div class="card reveal" style="--tint:rgba(95,168,47,.20)"><div class="capa">💎</div><div class="corpo"><div class="cat">Categoria</div><h3>Produto quatro</h3><p>Descrição curta e específica.</p><div class="meta">🕐 Destaque</div></div></div>
+      <div class="card reveal" style="--tint:rgba(201,161,0,.20)"><div class="capa">🚀</div><div class="corpo"><div class="cat">Categoria</div><h3>Produto cinco</h3><p>Descrição curta e específica.</p><div class="meta">🕐 Destaque</div></div></div>
+      <div class="card reveal" style="--tint:var(--acento-suave)"><div class="capa">🤝</div><div class="corpo"><div class="cat">Categoria</div><h3>Produto seis</h3><p>Descrição curta e específica.</p><div class="meta">🕐 Destaque</div></div></div>
     </div>
   </div>
 </section>
 
-
-<!-- ================================================================
-     SEÇÃO: DEPOIMENTOS  |  edite: provas reais de clientes
-     ================================================================ -->
-<section id="depoimentos">
-  <div class="wrap">
-    <div class="centro reveal">
-      <span class="selo">Quem já usou</span>
-      <h2>O que nossos clientes dizem</h2>
-    </div>
-    <div class="grid-3">
-      <div class="depo reveal">
-        <div class="estrelas">★★★★★</div>
-        <p>"Escreva aqui um depoimento real e específico. Depoimentos com números e detalhes convencem muito mais."</p>
-        <div class="autor"><div class="av">MJ</div><div><b>Maria J.</b><span>Cidade / Cargo</span></div></div>
-      </div>
-      <div class="depo reveal">
-        <div class="estrelas">★★★★★</div>
-        <p>"Outro depoimento. Mostre a transformação: como era antes e como ficou depois."</p>
-        <div class="autor"><div class="av">RS</div><div><b>Rafael S.</b><span>Cidade / Cargo</span></div></div>
-      </div>
-      <div class="depo reveal">
-        <div class="estrelas">★★★★★</div>
-        <p>"Terceiro depoimento. Se puder, use prints reais de WhatsApp como imagem — geram muita confiança."</p>
-        <div class="autor"><div class="av">AC</div><div><b>Ana C.</b><span>Cidade / Cargo</span></div></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<!-- ================================================================
-     SEÇÃO: OFERTA / PREÇO  |  edite: valores e o que está incluso
-     ================================================================ -->
+<!-- ================= SEÇÃO: OFERTA / PREÇO ================= -->
 <section id="oferta" class="oferta">
   <div class="wrap">
     <div class="centro reveal">
-      <span class="selo">Oferta especial</span>
-      <h2>Condição exclusiva por tempo limitado</h2>
-      <p class="sub">Reforce a urgência e a ancoragem de preço. Diga o valor cheio e o valor com desconto.</p>
+      <span class="eyebrow">Oferta especial</span>
+      <h2>Condição por <span class="ac">tempo limitado</span></h2>
     </div>
     <div class="plano reveal">
-      <span class="badge-topo">Mais escolhido</span>
+      <span class="badge">Mais escolhido</span>
+      <!-- Se não for exibir preço, apague o bloco .de/.preco abaixo -->
       <div class="de">De R$ 497</div>
-      <div class="por">R$ 297<small> à vista</small></div>
-      <div style="color:var(--cor-suave);">ou 12x de R$ 29,70</div>
+      <div class="preco">R$ 297<small> à vista</small></div>
+      <div style="color:var(--suave)">ou 12x de R$ 29,70</div>
       <ul>
         <li>Item incluso número um</li>
         <li>Item incluso número dois</li>
@@ -401,37 +339,29 @@ h2 { font-size: clamp(1.7rem, 4vw, 2.5rem); }
         <li>Suporte e atendimento pelo WhatsApp</li>
         <li>Garantia de satisfação</li>
       </ul>
-      <a class="btn btn-principal btn-wpp">💬 Garantir minha condição</a>
-      <p style="margin-top:14px; font-size:.85rem; color:var(--cor-suave);">Pagamento seguro • Atendimento imediato</p>
+      <a class="btn btn-principal btn-wpp">Garantir minha condição →</a>
+      <p class="obs">Pagamento seguro · Atendimento imediato</p>
     </div>
   </div>
 </section>
 
-
-<!-- ================================================================
-     SEÇÃO: GARANTIA  |  edite: sua garantia / risco zero
-     ================================================================ -->
-<section>
+<!-- ================= SEÇÃO: ASSINATURA / DIFERENCIAL ================= -->
+<section class="assinatura">
   <div class="wrap">
-    <div class="garantia reveal">
-      <div class="med">🛡️</div>
-      <div>
-        <h3>Garantia de 7 dias ou seu dinheiro de volta</h3>
-        <p>Tire o risco do cliente. Explique sua política de garantia com clareza — isso derruba a última objeção antes da compra.</p>
-      </div>
+    <div class="box reveal">
+      <span class="eyebrow mid" style="justify-content:center">O que só nós entregamos</span>
+      <h2>A frase-assinatura da sua marca</h2>
+      <p>Aquela combinação de diferenciais que só você pode dizer com verdade. É isso que separa você da concorrência.</p>
     </div>
   </div>
 </section>
 
-
-<!-- ================================================================
-     SEÇÃO: FAQ  |  edite: dúvidas que travam a compra
-     ================================================================ -->
-<section id="faq" class="alt">
+<!-- ================= SEÇÃO: FAQ ================= -->
+<section id="faq">
   <div class="wrap">
     <div class="centro reveal">
-      <span class="selo">Dúvidas</span>
-      <h2>Perguntas frequentes</h2>
+      <span class="eyebrow">Dúvidas</span>
+      <h2>Perguntas <span class="ac">frequentes</span></h2>
     </div>
     <div class="faq reveal">
       <details open><summary>Como faço para começar?</summary><p>Explique o passo a passo simples. Reforce que é só chamar no WhatsApp.</p></details>
@@ -443,36 +373,26 @@ h2 { font-size: clamp(1.7rem, 4vw, 2.5rem); }
   </div>
 </section>
 
-
-<!-- ================================================================
-     SEÇÃO: CTA FINAL
-     ================================================================ -->
-<section>
-  <div class="wrap">
-    <div class="cta-final reveal">
-      <h2>Pronto para dar o próximo passo?</h2>
-      <p>Chame agora no WhatsApp e comece hoje mesmo. Estamos prontos pra te atender.</p>
-      <a class="btn btn-claro btn-wpp">💬 Falar no WhatsApp agora</a>
-    </div>
+<!-- ================= SEÇÃO: CTA FINAL ================= -->
+<section class="final">
+  <div class="wrap reveal">
+    <span class="eyebrow mid" style="justify-content:center">Bora?</span>
+    <h2>Pronto para dar o <span class="ac">próximo passo?</span></h2>
+    <p>Chame agora no WhatsApp e comece hoje mesmo. Estamos prontos pra te atender.</p>
+    <a class="btn btn-principal btn-wpp">Falar no WhatsApp →</a>
   </div>
 </section>
 
-
-<!-- ================================================================
-     RODAPÉ
-     ================================================================ -->
+<!-- ================= RODAPÉ ================= -->
 <footer class="footer">
   <div class="wrap">
-    <div class="col" style="max-width:300px;">
-      <div class="logo"><span class="marca">N</span> NomeDaMarca</div>
+    <div class="col" style="max-width:320px">
+      <a href="#" class="logo"><span class="mono">N</span> <span>NomeDaMarca<small>Sua tagline</small></span></a>
       <p>Uma frase curta descrevendo sua marca e o que você entrega.</p>
     </div>
     <div class="col">
       <h4>Navegação</h4>
-      <a href="#beneficios">Benefícios</a>
-      <a href="#como">Como funciona</a>
-      <a href="#oferta">Preço</a>
-      <a href="#faq">Dúvidas</a>
+      <a href="#produtos">Produtos</a><a href="#porque">Por que nós</a><a href="#oferta">Oferta</a><a href="#faq">Dúvidas</a>
     </div>
     <div class="col">
       <h4>Contato</h4>
@@ -485,49 +405,24 @@ h2 { font-size: clamp(1.7rem, 4vw, 2.5rem); }
   <div class="wrap"><div class="base">© <span id="ano"></span> NomeDaMarca. Todos os direitos reservados.</div></div>
 </footer>
 
-
-<!-- Botão flutuante de WhatsApp -->
 <a class="flutuante btn-wpp" aria-label="Falar no WhatsApp">💬</a>
 
-
-<!-- ================================================================
-     SCRIPTS  —  1 configuração de WhatsApp + animação de scroll
-     ================================================================ -->
 <script>
-  /* =============================================================
-     1) EDITE AQUI: WHATSAPP
-     - NUMERO: DDI + DDD + número, só dígitos (Brasil começa com 55)
-     - MENSAGEM: texto que já vem escrito quando o cliente abre a conversa
-     Isso preenche TODOS os botões de WhatsApp da página de uma vez.
-     ============================================================= */
+  /* ===== 1) EDITE AQUI: WHATSAPP =====
+     NUMERO: 55 + DDD + número (só dígitos). Preenche TODOS os botões de uma vez.
+     Qualquer link/elemento com a classe "btn-wpp" vira botão de WhatsApp. */
   var WHATSAPP = {
     NUMERO:   "5511900000000",
     MENSAGEM: "Olá! Vim pela página e quero saber mais."
   };
-
-  (function () {
-    var link = "https://wa.me/" + WHATSAPP.NUMERO + "?text=" + encodeURIComponent(WHATSAPP.MENSAGEM);
-    document.querySelectorAll(".btn-wpp").forEach(function (a) {
-      a.setAttribute("href", link);
-      a.setAttribute("target", "_blank");
-      a.setAttribute("rel", "noopener");
-    });
-
-    // Ano automático no rodapé
-    var ano = document.getElementById("ano");
-    if (ano) ano.textContent = new Date().getFullYear();
-
-    // Animação de entrada ao rolar a página
-    var els = document.querySelectorAll(".reveal");
-    if ("IntersectionObserver" in window) {
-      var io = new IntersectionObserver(function (entries) {
-        entries.forEach(function (e) {
-          if (e.isIntersecting) { e.target.classList.add("show"); io.unobserve(e.target); }
-        });
-      }, { threshold: 0.12 });
-      els.forEach(function (el) { io.observe(el); });
-    } else {
-      els.forEach(function (el) { el.classList.add("show"); });
-    }
+  (function(){
+    var link="https://wa.me/"+WHATSAPP.NUMERO+"?text="+encodeURIComponent(WHATSAPP.MENSAGEM);
+    document.querySelectorAll(".btn-wpp").forEach(function(a){a.setAttribute("href",link);a.setAttribute("target","_blank");a.setAttribute("rel","noopener");});
+    var ano=document.getElementById("ano"); if(ano) ano.textContent=new Date().getFullYear();
+    var els=document.querySelectorAll(".reveal");
+    if("IntersectionObserver" in window){
+      var io=new IntersectionObserver(function(en){en.forEach(function(e){if(e.isIntersecting){e.target.classList.add("show");io.unobserve(e.target);}});},{threshold:.12});
+      els.forEach(function(el){io.observe(el);});
+    } else els.forEach(function(el){el.classList.add("show");});
   })();
 </script>
