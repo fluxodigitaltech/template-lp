@@ -1,8 +1,5 @@
 .git
 .gitignore
-.dockerignore
-Dockerfile
-README.md
 *.png
 *.jpeg
 *.jpg
