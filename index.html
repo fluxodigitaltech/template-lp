@@ -1,0 +1,533 @@
+<!--
+======================================================================
+  TEMPLATE — LANDING PAGE DE VENDA DIRETA  (CTA: WhatsApp)
+  Arquivo único, sem build, sem dependências pesadas. É só editar e subir.
+======================================================================
+
+  ┌────────────────────────────────────────────────────────────────┐
+  │  GUIA DE EDIÇÃO — troque só estes 5 pontos em toda LP nova:     │
+  │                                                                  │
+  │  1) NÚMERO DO WHATSAPP ...... busque  "EDITE AQUI: WHATSAPP"     │
+  │  2) CORES E FONTES .......... busque  ":root"  (logo abaixo)     │
+  │  3) MARCA / LOGO ............ busque  "EDITE AQUI: MARCA"        │
+  │  4) IMAGENS ................. busque  "EDITE AQUI: IMAGEM"       │
+  │  5) TEXTOS DE VENDA ......... cada seção começa com "SEÇÃO: ..." │
+  │                                                                  │
+  │  Dica: no VSCode use Ctrl+F e procure por "EDITE AQUI".          │
+  └────────────────────────────────────────────────────────────────┘
+-->
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<!-- EDITE AQUI: MARCA — título que aparece na aba do navegador e no Google -->
+<title>Nome do Produto — Solução que resolve o problema do seu cliente</title>
+<meta name="description" content="Escreva aqui 1 frase de venda (aparece no Google). Ex: Resolvemos [problema] com [solução] — atendimento rápido pelo WhatsApp." />
+
+<!-- Tipografia (Inter). Para deixar 100% offline, apague este <link> e o template
+     usa a fonte do sistema automaticamente. -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+<style>
+/* ==================================================================
+   2) CORES E FONTES  —  mude o visual inteiro editando só aqui
+   ================================================================== */
+:root {
+  /* CORES — troque a cor de destaque e a página toda muda de cara */
+  --cor-destaque:       #2563EB;   /* cor principal: botões, links, ícones */
+  --cor-destaque-hover: #1D4ED8;   /* mesma cor um tom mais escuro          */
+  --cor-destaque-suave: #EFF4FF;   /* fundo clarinho da cor de destaque     */
+
+  --cor-titulo:  #0B1220;          /* cor dos títulos                       */
+  --cor-texto:   #374151;          /* cor do texto normal                   */
+  --cor-suave:   #6B7280;          /* textos secundários / legendas         */
+
+  --cor-fundo:     #FFFFFF;        /* fundo padrão                          */
+  --cor-fundo-alt: #F6F8FC;        /* fundo das seções alternadas           */
+  --cor-borda:     #E7EBF1;        /* linhas e bordas                       */
+  --cor-escuro:    #0B1220;        /* fundo das seções escuras (oferta/CTA) */
+
+  /* FONTES */
+  --fonte: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+
+  /* FORMATO */
+  --raio:   16px;                  /* arredondamento dos cantos             */
+  --raio-p: 10px;
+  --sombra:    0 4px 24px rgba(16, 24, 40, .06);
+  --sombra-md: 0 12px 40px rgba(16, 24, 40, .10);
+  --largura: 1140px;               /* largura máxima do conteúdo            */
+}
+
+/* ---- Base (normalmente não precisa mexer daqui pra baixo) ---------- */
+*,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--fonte);
+  color: var(--cor-texto);
+  background: var(--cor-fundo);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+h1,h2,h3 { color: var(--cor-titulo); line-height: 1.15; font-weight: 800; letter-spacing: -.02em; }
+section { padding: 84px 0; }
+.wrap { width: 100%; max-width: var(--largura); margin: 0 auto; padding: 0 22px; }
+.centro { text-align: center; max-width: 720px; margin: 0 auto 52px; }
+.selo {
+  display: inline-block; font-size: .8rem; font-weight: 700; letter-spacing: .04em;
+  text-transform: uppercase; color: var(--cor-destaque);
+  background: var(--cor-destaque-suave); padding: 7px 14px; border-radius: 999px; margin-bottom: 18px;
+}
+h2 { font-size: clamp(1.7rem, 4vw, 2.5rem); }
+.sub { color: var(--cor-suave); font-size: 1.08rem; margin-top: 14px; }
+.alt { background: var(--cor-fundo-alt); }
+
+/* ---- Botões ------------------------------------------------------- */
+.btn {
+  display: inline-flex; align-items: center; gap: 10px; cursor: pointer;
+  font-family: inherit; font-size: 1.02rem; font-weight: 700; border: 0;
+  padding: 16px 30px; border-radius: var(--raio-p); transition: transform .15s, box-shadow .15s, background .15s;
+}
+.btn-principal { background: var(--cor-destaque); color: #fff; box-shadow: 0 8px 22px rgba(37,99,235,.28); }
+.btn-principal:hover { background: var(--cor-destaque-hover); transform: translateY(-2px); box-shadow: 0 12px 28px rgba(37,99,235,.36); }
+.btn-fantasma { background: transparent; color: var(--cor-titulo); border: 1.5px solid var(--cor-borda); }
+.btn-fantasma:hover { border-color: var(--cor-destaque); color: var(--cor-destaque); }
+.btn-claro { background: #fff; color: var(--cor-titulo); }
+.btn-claro:hover { transform: translateY(-2px); box-shadow: var(--sombra-md); }
+
+/* ---- Header ------------------------------------------------------- */
+.header {
+  position: sticky; top: 0; z-index: 50; background: rgba(255,255,255,.85);
+  backdrop-filter: saturate(180%) blur(12px); border-bottom: 1px solid var(--cor-borda);
+}
+.header .wrap { display: flex; align-items: center; justify-content: space-between; height: 68px; }
+.logo { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 1.2rem; color: var(--cor-titulo); }
+.logo .marca { width: 34px; height: 34px; border-radius: 9px; background: var(--cor-destaque); color:#fff; display:grid; place-items:center; font-size:1rem; }
+.nav { display: flex; align-items: center; gap: 28px; }
+.nav a { color: var(--cor-suave); font-weight: 500; font-size: .96rem; }
+.nav a:hover { color: var(--cor-titulo); }
+.header .btn { padding: 11px 22px; font-size: .95rem; }
+@media (max-width: 860px){ .nav { display: none; } }
+
+/* ---- Hero --------------------------------------------------------- */
+.hero { padding: 72px 0 64px; }
+.hero .wrap { display: grid; grid-template-columns: 1.05fr .95fr; gap: 48px; align-items: start; }
+.hero h1 { font-size: clamp(2.1rem, 5.2vw, 3.4rem); }
+.hero p.lead { font-size: 1.18rem; color: var(--cor-texto); margin: 20px 0 30px; max-width: 540px; }
+.hero .acoes { display: flex; gap: 14px; flex-wrap: wrap; }
+.hero .reforco { margin-top: 22px; font-size: .92rem; color: var(--cor-suave); display:flex; align-items:center; gap:8px; }
+.hero-img { border-radius: var(--raio); box-shadow: var(--sombra-md); object-fit: cover; width: 100%;
+  height: 420px; align-self: center;
+  background: linear-gradient(135deg, var(--cor-destaque-suave), #fff); }
+@media (max-width: 860px){ .hero-img { height: 300px; } }
+@media (max-width: 860px){ .hero .wrap { grid-template-columns: 1fr; } .hero-img { order: -1; } }
+
+/* ---- Barra de métricas -------------------------------------------- */
+.metricas { display: grid; grid-template-columns: repeat(4,1fr); gap: 24px; text-align:center; margin: 12px 0;
+  border: 1px solid var(--cor-borda); border-radius: var(--raio); padding: 30px 20px; background:#fff; box-shadow: var(--sombra); }
+.metricas .n { font-size: 2rem; font-weight: 800; color: var(--cor-titulo); }
+.metricas .l { font-size: .9rem; color: var(--cor-suave); }
+@media (max-width: 700px){ .metricas { grid-template-columns: repeat(2,1fr); gap: 26px 16px; } }
+
+/* ---- Grades de cards ---------------------------------------------- */
+.grid-3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; }
+.grid-2 { display: grid; grid-template-columns: repeat(2,1fr); gap: 24px; }
+@media (max-width: 860px){ .grid-3, .grid-2 { grid-template-columns: 1fr; } }
+.card { background:#fff; border: 1px solid var(--cor-borda); border-radius: var(--raio); padding: 30px; box-shadow: var(--sombra); transition: transform .18s, box-shadow .18s; }
+.card:hover { transform: translateY(-4px); box-shadow: var(--sombra-md); }
+.card .ico { width: 52px; height: 52px; border-radius: 13px; background: var(--cor-destaque-suave); display:grid; place-items:center; font-size:1.5rem; margin-bottom: 18px; }
+.card h3 { font-size: 1.2rem; margin-bottom: 8px; }
+.card p { color: var(--cor-suave); font-size: .98rem; }
+
+/* ---- Passos ------------------------------------------------------- */
+.passos { display: grid; grid-template-columns: repeat(3,1fr); gap: 30px; counter-reset: p; }
+@media (max-width: 860px){ .passos { grid-template-columns: 1fr; } }
+.passo { position: relative; padding-left: 4px; }
+.passo .num { width: 46px; height: 46px; border-radius: 50%; background: var(--cor-destaque); color:#fff; font-weight:800; display:grid; place-items:center; margin-bottom:16px; }
+.passo h3 { font-size: 1.15rem; margin-bottom: 6px; }
+.passo p { color: var(--cor-suave); }
+
+/* ---- Depoimentos -------------------------------------------------- */
+.depo { background:#fff; border:1px solid var(--cor-borda); border-radius: var(--raio); padding: 28px; box-shadow: var(--sombra); }
+.depo .estrelas { color:#F59E0B; margin-bottom: 12px; letter-spacing: 2px; }
+.depo p { font-size: 1.02rem; color: var(--cor-texto); }
+.depo .autor { display:flex; align-items:center; gap:12px; margin-top: 18px; }
+.depo .av { width:44px; height:44px; border-radius:50%; background: var(--cor-destaque-suave); display:grid; place-items:center; font-weight:700; color: var(--cor-destaque); }
+.depo .autor b { color: var(--cor-titulo); display:block; font-size:.96rem; }
+.depo .autor span { color: var(--cor-suave); font-size:.85rem; }
+
+/* ---- Oferta (seção escura) ---------------------------------------- */
+.oferta { background: var(--cor-escuro); color:#fff; }
+.oferta h2, .oferta h3 { color:#fff; }
+.oferta .sub { color: rgba(255,255,255,.7); }
+.plano { max-width: 480px; margin: 0 auto; background:#fff; color: var(--cor-texto); border-radius: var(--raio); padding: 40px; box-shadow: var(--sombra-md); }
+.plano .de { color: var(--cor-suave); text-decoration: line-through; font-size: 1.05rem; }
+.plano .por { font-size: 3rem; font-weight: 800; color: var(--cor-titulo); line-height: 1; margin: 4px 0 4px; }
+.plano .por small { font-size: 1rem; font-weight: 600; color: var(--cor-suave); }
+.plano ul { list-style: none; margin: 26px 0; text-align:left; display:grid; gap: 13px; }
+.plano li { display:flex; gap:11px; align-items:flex-start; }
+.plano li::before { content:"✓"; color: var(--cor-destaque); font-weight:800; }
+.plano .btn { width: 100%; justify-content: center; }
+.badge-topo { display:inline-block; background: var(--cor-destaque); color:#fff; font-weight:700; font-size:.78rem; letter-spacing:.05em; text-transform:uppercase; padding:6px 14px; border-radius:999px; margin-bottom: 18px; }
+
+/* ---- Garantia ----------------------------------------------------- */
+.garantia { display:flex; align-items:center; gap: 28px; background: var(--cor-destaque-suave); border-radius: var(--raio); padding: 36px 40px; }
+.garantia .med { font-size: 3.4rem; }
+.garantia h3 { font-size: 1.3rem; margin-bottom: 6px; }
+.garantia p { color: var(--cor-texto); }
+@media (max-width: 640px){ .garantia { flex-direction: column; text-align:center; } }
+
+/* ---- FAQ (sem JS, usa <details>) ---------------------------------- */
+.faq { max-width: 760px; margin: 0 auto; }
+.faq details { border:1px solid var(--cor-borda); border-radius: var(--raio-p); margin-bottom: 12px; background:#fff; overflow:hidden; }
+.faq summary { list-style:none; cursor:pointer; padding: 20px 24px; font-weight:600; color: var(--cor-titulo); display:flex; justify-content:space-between; align-items:center; gap:12px; }
+.faq summary::-webkit-details-marker { display:none; }
+.faq summary::after { content:"+"; font-size:1.5rem; color: var(--cor-destaque); font-weight:400; transition: transform .2s; }
+.faq details[open] summary::after { transform: rotate(45deg); }
+.faq details p { padding: 0 24px 22px; color: var(--cor-suave); }
+
+/* ---- CTA final ---------------------------------------------------- */
+.cta-final { background: linear-gradient(135deg, var(--cor-destaque), var(--cor-destaque-hover)); color:#fff; text-align:center; border-radius: var(--raio); padding: 60px 30px; }
+.cta-final h2 { color:#fff; }
+.cta-final p { color: rgba(255,255,255,.85); margin: 14px 0 30px; font-size:1.1rem; }
+
+/* ---- Rodapé ------------------------------------------------------- */
+.footer { background: var(--cor-escuro); color: rgba(255,255,255,.65); padding: 56px 0 30px; }
+.footer .wrap { display:flex; justify-content:space-between; gap:30px; flex-wrap:wrap; }
+.footer .logo { color:#fff; margin-bottom: 12px; }
+.footer a { color: rgba(255,255,255,.65); }
+.footer a:hover { color:#fff; }
+.footer .col h4 { color:#fff; font-size:.95rem; margin-bottom:12px; }
+.footer .col p, .footer .col a { display:block; font-size:.92rem; margin-bottom:8px; }
+.footer .base { border-top:1px solid rgba(255,255,255,.12); margin-top:36px; padding-top:22px; font-size:.85rem; text-align:center; }
+
+/* ---- Botão flutuante de WhatsApp ---------------------------------- */
+.flutuante { position: fixed; bottom: 22px; right: 22px; z-index: 60; background:#25D366; color:#fff; width:60px; height:60px; border-radius:50%; display:grid; place-items:center; box-shadow: 0 8px 24px rgba(0,0,0,.22); font-size:1.7rem; transition: transform .15s; }
+.flutuante:hover { transform: scale(1.08); }
+
+/* ---- Animação de entrada (sutil) ---------------------------------- */
+.reveal { opacity:0; transform: translateY(22px); transition: opacity .6s ease, transform .6s ease; }
+.reveal.show { opacity:1; transform:none; }
+@media (prefers-reduced-motion: reduce){ .reveal { opacity:1; transform:none; } html{scroll-behavior:auto;} }
+</style>
+
+
+<!-- ================================================================
+     HEADER
+     ================================================================ -->
+<header class="header">
+  <div class="wrap">
+    <!-- EDITE AQUI: MARCA — troque a inicial e o nome (ou coloque uma <img> do logo) -->
+    <a href="#" class="logo"><span class="marca">N</span> NomeDaMarca</a>
+    <nav class="nav">
+      <a href="#beneficios">Benefícios</a>
+      <a href="#como">Como funciona</a>
+      <a href="#depoimentos">Depoimentos</a>
+      <a href="#oferta">Preço</a>
+      <a href="#faq">Dúvidas</a>
+    </nav>
+    <a class="btn btn-principal btn-wpp">Falar no WhatsApp</a>
+  </div>
+</header>
+
+
+<!-- ================================================================
+     SEÇÃO: HERO  |  edite: headline, subtítulo e imagem principal
+     ================================================================ -->
+<section class="hero">
+  <div class="wrap">
+    <div class="reveal">
+      <span class="selo">Oferta por tempo limitado</span>
+      <h1>A frase que promete o resultado que seu cliente quer</h1>
+      <p class="lead">Explique em 1 ou 2 linhas COMO você entrega esse resultado e por que é diferente. Foque na dor que resolve, não nas características.</p>
+      <div class="acoes">
+        <a class="btn btn-principal btn-wpp">💬 Quero começar agora</a>
+        <a class="btn btn-fantasma" href="#como">Ver como funciona</a>
+      </div>
+      <div class="reforco">✅ Resposta rápida no WhatsApp • Sem compromisso</div>
+    </div>
+    <!-- EDITE AQUI: IMAGEM — troque o src por uma foto/mockup do seu produto -->
+    <img class="hero-img" src="" alt="Imagem do produto"
+         onerror="this.style.background='linear-gradient(135deg,var(--cor-destaque-suave),#fff)';this.removeAttribute('src');" />
+  </div>
+</section>
+
+
+<!-- ================================================================
+     SEÇÃO: MÉTRICAS  |  edite: seus números de prova
+     ================================================================ -->
+<div class="wrap">
+  <div class="metricas reveal">
+    <div><div class="n">+2.500</div><div class="l">Clientes atendidos</div></div>
+    <div><div class="n">4,9★</div><div class="l">Avaliação média</div></div>
+    <div><div class="n">+8 anos</div><div class="l">De experiência</div></div>
+    <div><div class="n">98%</div><div class="l">Recomendariam</div></div>
+  </div>
+</div>
+
+
+<!-- ================================================================
+     SEÇÃO: DOR / PROBLEMA  |  edite: agite o problema do cliente
+     ================================================================ -->
+<section>
+  <div class="wrap">
+    <div class="centro reveal">
+      <span class="selo">Reconhece isso?</span>
+      <h2>O problema que está custando tempo, dinheiro ou tranquilidade</h2>
+      <p class="sub">Descreva a situação frustrante que seu cliente vive HOJE. Quanto mais ele se reconhecer, mais forte fica a sua solução logo abaixo.</p>
+    </div>
+    <div class="grid-3">
+      <div class="card reveal"><div class="ico">😩</div><h3>Primeira dor</h3><p>Descreva um incômodo concreto que o cliente sente e as consequências dele.</p></div>
+      <div class="card reveal"><div class="ico">⏳</div><h3>Segunda dor</h3><p>Outro problema comum — algo que ele já tentou resolver e não deu certo.</p></div>
+      <div class="card reveal"><div class="ico">💸</div><h3>Terceira dor</h3><p>O custo de continuar do jeito que está. Perda de dinheiro, tempo ou oportunidade.</p></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ================================================================
+     SEÇÃO: SOLUÇÃO  |  edite: apresente sua oferta como a virada
+     ================================================================ -->
+<section class="alt">
+  <div class="wrap">
+    <div class="grid-2" style="align-items:center; gap:48px;">
+      <!-- EDITE AQUI: IMAGEM -->
+      <img class="hero-img reveal" src="" alt="Sua solução"
+           onerror="this.style.background='linear-gradient(135deg,var(--cor-destaque-suave),#fff)';this.removeAttribute('src');" />
+      <div class="reveal">
+        <span class="selo">A solução</span>
+        <h2>Apresente seu produto como a virada de chave</h2>
+        <p class="sub">Em 2 ou 3 frases, diga o que é o seu produto/serviço e a transformação que ele gera. Use linguagem simples e direta.</p>
+        <div class="acoes" style="margin-top:26px;">
+          <a class="btn btn-principal btn-wpp">Quero saber mais</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ================================================================
+     SEÇÃO: BENEFÍCIOS  |  edite: 6 ganhos claros (foco no cliente)
+     ================================================================ -->
+<section id="beneficios">
+  <div class="wrap">
+    <div class="centro reveal">
+      <span class="selo">Por que escolher</span>
+      <h2>Tudo o que você ganha ao começar</h2>
+      <p class="sub">Liste benefícios (o que o cliente ganha), não características (o que o produto tem).</p>
+    </div>
+    <div class="grid-3">
+      <div class="card reveal"><div class="ico">⚡</div><h3>Benefício rápido</h3><p>Explique o ganho em 1 frase. Comece com um verbo: economize, ganhe, evite...</p></div>
+      <div class="card reveal"><div class="ico">🎯</div><h3>Resultado claro</h3><p>Foque no que muda na vida ou no negócio do cliente.</p></div>
+      <div class="card reveal"><div class="ico">🛡️</div><h3>Segurança</h3><p>Reforce confiança, garantia ou suporte.</p></div>
+      <div class="card reveal"><div class="ico">💰</div><h3>Custo-benefício</h3><p>Mostre que o retorno vale muito mais que o investimento.</p></div>
+      <div class="card reveal"><div class="ico">🤝</div><h3>Atendimento</h3><p>Destaque o atendimento próximo e humano pelo WhatsApp.</p></div>
+      <div class="card reveal"><div class="ico">🚀</div><h3>Facilidade</h3><p>Mostre como é simples começar — sem burocracia.</p></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ================================================================
+     SEÇÃO: COMO FUNCIONA  |  edite: 3 passos simples
+     ================================================================ -->
+<section id="como" class="alt">
+  <div class="wrap">
+    <div class="centro reveal">
+      <span class="selo">Simples assim</span>
+      <h2>Comece em 3 passos</h2>
+    </div>
+    <div class="passos">
+      <div class="passo reveal"><div class="num">1</div><h3>Fale com a gente</h3><p>Clique no botão e chame no WhatsApp. Entendemos sua necessidade.</p></div>
+      <div class="passo reveal"><div class="num">2</div><h3>Receba a proposta</h3><p>Montamos a melhor solução pro seu caso, sem enrolação.</p></div>
+      <div class="passo reveal"><div class="num">3</div><h3>Aproveite o resultado</h3><p>Comece a usar e sinta a diferença desde o primeiro dia.</p></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ================================================================
+     SEÇÃO: DEPOIMENTOS  |  edite: provas reais de clientes
+     ================================================================ -->
+<section id="depoimentos">
+  <div class="wrap">
+    <div class="centro reveal">
+      <span class="selo">Quem já usou</span>
+      <h2>O que nossos clientes dizem</h2>
+    </div>
+    <div class="grid-3">
+      <div class="depo reveal">
+        <div class="estrelas">★★★★★</div>
+        <p>"Escreva aqui um depoimento real e específico. Depoimentos com números e detalhes convencem muito mais."</p>
+        <div class="autor"><div class="av">MJ</div><div><b>Maria J.</b><span>Cidade / Cargo</span></div></div>
+      </div>
+      <div class="depo reveal">
+        <div class="estrelas">★★★★★</div>
+        <p>"Outro depoimento. Mostre a transformação: como era antes e como ficou depois."</p>
+        <div class="autor"><div class="av">RS</div><div><b>Rafael S.</b><span>Cidade / Cargo</span></div></div>
+      </div>
+      <div class="depo reveal">
+        <div class="estrelas">★★★★★</div>
+        <p>"Terceiro depoimento. Se puder, use prints reais de WhatsApp como imagem — geram muita confiança."</p>
+        <div class="autor"><div class="av">AC</div><div><b>Ana C.</b><span>Cidade / Cargo</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ================================================================
+     SEÇÃO: OFERTA / PREÇO  |  edite: valores e o que está incluso
+     ================================================================ -->
+<section id="oferta" class="oferta">
+  <div class="wrap">
+    <div class="centro reveal">
+      <span class="selo">Oferta especial</span>
+      <h2>Condição exclusiva por tempo limitado</h2>
+      <p class="sub">Reforce a urgência e a ancoragem de preço. Diga o valor cheio e o valor com desconto.</p>
+    </div>
+    <div class="plano reveal">
+      <span class="badge-topo">Mais escolhido</span>
+      <div class="de">De R$ 497</div>
+      <div class="por">R$ 297<small> à vista</small></div>
+      <div style="color:var(--cor-suave);">ou 12x de R$ 29,70</div>
+      <ul>
+        <li>Item incluso número um</li>
+        <li>Item incluso número dois</li>
+        <li>Bônus exclusivo por tempo limitado</li>
+        <li>Suporte e atendimento pelo WhatsApp</li>
+        <li>Garantia de satisfação</li>
+      </ul>
+      <a class="btn btn-principal btn-wpp">💬 Garantir minha condição</a>
+      <p style="margin-top:14px; font-size:.85rem; color:var(--cor-suave);">Pagamento seguro • Atendimento imediato</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ================================================================
+     SEÇÃO: GARANTIA  |  edite: sua garantia / risco zero
+     ================================================================ -->
+<section>
+  <div class="wrap">
+    <div class="garantia reveal">
+      <div class="med">🛡️</div>
+      <div>
+        <h3>Garantia de 7 dias ou seu dinheiro de volta</h3>
+        <p>Tire o risco do cliente. Explique sua política de garantia com clareza — isso derruba a última objeção antes da compra.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ================================================================
+     SEÇÃO: FAQ  |  edite: dúvidas que travam a compra
+     ================================================================ -->
+<section id="faq" class="alt">
+  <div class="wrap">
+    <div class="centro reveal">
+      <span class="selo">Dúvidas</span>
+      <h2>Perguntas frequentes</h2>
+    </div>
+    <div class="faq reveal">
+      <details open><summary>Como faço para começar?</summary><p>Explique o passo a passo simples. Reforce que é só chamar no WhatsApp.</p></details>
+      <details><summary>Quais as formas de pagamento?</summary><p>Liste as formas de pagamento aceitas.</p></details>
+      <details><summary>Tem garantia?</summary><p>Repita sua garantia aqui, com os detalhes.</p></details>
+      <details><summary>Em quanto tempo vejo resultado?</summary><p>Seja realista e honesto — expectativa alinhada evita frustração.</p></details>
+      <details><summary>Atende minha região / meu caso?</summary><p>Responda a objeção mais comum do seu público.</p></details>
+    </div>
+  </div>
+</section>
+
+
+<!-- ================================================================
+     SEÇÃO: CTA FINAL
+     ================================================================ -->
+<section>
+  <div class="wrap">
+    <div class="cta-final reveal">
+      <h2>Pronto para dar o próximo passo?</h2>
+      <p>Chame agora no WhatsApp e comece hoje mesmo. Estamos prontos pra te atender.</p>
+      <a class="btn btn-claro btn-wpp">💬 Falar no WhatsApp agora</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ================================================================
+     RODAPÉ
+     ================================================================ -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="col" style="max-width:300px;">
+      <div class="logo"><span class="marca">N</span> NomeDaMarca</div>
+      <p>Uma frase curta descrevendo sua marca e o que você entrega.</p>
+    </div>
+    <div class="col">
+      <h4>Navegação</h4>
+      <a href="#beneficios">Benefícios</a>
+      <a href="#como">Como funciona</a>
+      <a href="#oferta">Preço</a>
+      <a href="#faq">Dúvidas</a>
+    </div>
+    <div class="col">
+      <h4>Contato</h4>
+      <!-- EDITE AQUI: WHATSAPP (texto exibido) -->
+      <a class="btn-wpp" style="cursor:pointer">WhatsApp: (11) 90000-0000</a>
+      <a href="mailto:contato@suamarca.com.br">contato@suamarca.com.br</a>
+      <p>Sua cidade — Estado</p>
+    </div>
+  </div>
+  <div class="wrap"><div class="base">© <span id="ano"></span> NomeDaMarca. Todos os direitos reservados.</div></div>
+</footer>
+
+
+<!-- Botão flutuante de WhatsApp -->
+<a class="flutuante btn-wpp" aria-label="Falar no WhatsApp">💬</a>
+
+
+<!-- ================================================================
+     SCRIPTS  —  1 configuração de WhatsApp + animação de scroll
+     ================================================================ -->
+<script>
+  /* =============================================================
+     1) EDITE AQUI: WHATSAPP
+     - NUMERO: DDI + DDD + número, só dígitos (Brasil começa com 55)
+     - MENSAGEM: texto que já vem escrito quando o cliente abre a conversa
+     Isso preenche TODOS os botões de WhatsApp da página de uma vez.
+     ============================================================= */
+  var WHATSAPP = {
+    NUMERO:   "5511900000000",
+    MENSAGEM: "Olá! Vim pela página e quero saber mais."
+  };
+
+  (function () {
+    var link = "https://wa.me/" + WHATSAPP.NUMERO + "?text=" + encodeURIComponent(WHATSAPP.MENSAGEM);
+    document.querySelectorAll(".btn-wpp").forEach(function (a) {
+      a.setAttribute("href", link);
+      a.setAttribute("target", "_blank");
+      a.setAttribute("rel", "noopener");
+    });
+
+    // Ano automático no rodapé
+    var ano = document.getElementById("ano");
+    if (ano) ano.textContent = new Date().getFullYear();
+
+    // Animação de entrada ao rolar a página
+    var els = document.querySelectorAll(".reveal");
+    if ("IntersectionObserver" in window) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) { e.target.classList.add("show"); io.unobserve(e.target); }
+        });
+      }, { threshold: 0.12 });
+      els.forEach(function (el) { io.observe(el); });
+    } else {
+      els.forEach(function (el) { el.classList.add("show"); });
+    }
+  })();
+</script>

@@ -1,0 +1,5 @@
+# Screenshots temporários / previews
+*.png
+*.jpeg
+*.jpg
+.DS_Store
