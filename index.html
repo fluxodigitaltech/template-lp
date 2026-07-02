@@ -1,6 +1,6 @@
 <!--
 ======================================================================
-  TEMPLATE — LANDING PAGE DE VENDA DIRETA  (dark / workout · CTA WhatsApp)
+  TEMPLATE — LANDING PAGE DE VENDA DIRETA  (claro · CTA WhatsApp)
   Arquivo único, sem build. É só editar e subir.
 ======================================================================
 
@@ -16,8 +16,8 @@
   │  Troque só --acento e a página inteira muda de cor.             │
   └────────────────────────────────────────────────────────────────┘
 
-  Design system: dark + acento vivo + tipografia condensada (Anton),
-  títulos bicolor, fotos full-bleed, ícones em acento, moldura no perímetro.
+  Design system: claro/limpo + acento de marca + tipografia condensada
+  (Anton) com títulos bicolor, hero split, faixa CTA, cards de produtos.
 -->
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -34,22 +34,25 @@
 <style>
 /* ============ COR DE ACENTO E FONTES (mude tudo por aqui) ========= */
 :root{
-  --acento:      #57C4B0;   /* << TROQUE AQUI: cor da marca (botões, títulos, ícones) — teal suave */
-  --acento-2:    #46B09C;   /* mesmo tom, um pouco mais escuro (hover) */
-  --acento-suave:rgba(87,196,176,.14);
-  --txt-acento:  #0E0E0E;   /* cor do texto EM CIMA do acento (preto p/ cor clara; branco p/ cor escura) */
+  --acento:      #2F6DFF;   /* << TROQUE AQUI: cor da marca (botões, títulos, ícones) — azul Fluxo */
+  --acento-2:    #1F57E0;   /* mesmo tom, um pouco mais escuro (hover) */
+  --acento-suave:rgba(47,109,255,.10);
+  --txt-acento:  #FFFFFF;   /* cor do texto EM CIMA do acento (branco p/ cor escura; preto p/ cor clara) */
 
-  --bg:    #0E0E0E;         /* fundo base                  */
-  --bg-2:  #141414;         /* seções alternadas           */
-  --bg-3:  #1A1A1A;         /* cards                       */
-  --linha: #2A2A2A;         /* filetes/bordas              */
+  --bg:    #FFFFFF;         /* fundo base                  */
+  --bg-2:  #F5F8FD;         /* seções alternadas           */
+  --bg-3:  #FFFFFF;         /* cards                       */
+  --linha: #E4E9F2;         /* filetes/bordas              */
 
-  --branco:#FFFFFF;
-  --texto: #C7C7C7;         /* corpo                       */
-  --suave: #9A9A9A;         /* legendas                    */
+  --forte: #0F1B2D;         /* títulos / texto forte       */
+  --texto: #3E4C5A;         /* corpo                       */
+  --suave: #7A8794;         /* legendas                    */
 
-  /* tons opcionais p/ dar variação nos cards (troque à vontade) — paleta calma */
-  --c1:var(--acento); --c2:#6BA8C9; --c3:#C99BB0; --c4:#8BB98F; --c5:#C9B98B;
+  /* tons opcionais p/ dar variação nos ícones/cards (troque à vontade) */
+  --c1:var(--acento); --c2:#2FA7C4; --c3:#C06A8E; --c4:#4FA36B; --c5:#C79A3E;
+
+  --sombra:   0 6px 24px rgba(15,27,45,.07);
+  --sombra-2: 0 14px 40px rgba(15,27,45,.12);
 
   --display:'Anton', Impact, sans-serif;
   --fonte:'Montserrat', system-ui, sans-serif;
@@ -66,7 +69,7 @@ section{padding:90px 0}
 .centro{text-align:center;max-width:760px;margin:0 auto 56px}
 
 /* Títulos display (Anton) — caixa alta, bicolor com <span class="ac"> */
-h1,h2{font-family:var(--display);font-weight:400;text-transform:uppercase;color:var(--branco);line-height:.98;letter-spacing:.01em}
+h1,h2{font-family:var(--display);font-weight:400;text-transform:uppercase;color:var(--forte);line-height:.98;letter-spacing:.01em}
 h1{font-size:clamp(2.8rem,7vw,5rem)}
 h2{font-size:clamp(2rem,5vw,3.4rem)}
 .ac{color:var(--acento)}
@@ -76,25 +79,21 @@ h2{font-size:clamp(2rem,5vw,3.4rem)}
 .centro .eyebrow::before,.eyebrow.mid::before{display:none}
 .sub{color:var(--suave);font-size:1.06rem;margin-top:18px}
 
-/* Moldura no perímetro (assinatura do design). Remova .frame se não quiser. */
-.frame{position:fixed;inset:12px;border:2px solid var(--acento);border-radius:2px;pointer-events:none;z-index:80}
-@media(max-width:640px){.frame{inset:7px}}
-
 /* ============ BOTÕES ============ */
-.btn{display:inline-flex;align-items:center;gap:10px;cursor:pointer;font-family:inherit;font-weight:700;font-size:.9rem;letter-spacing:.06em;text-transform:uppercase;border:0;padding:16px 30px;border-radius:4px;transition:transform .15s,background .15s,box-shadow .15s,color .15s}
-.btn-principal{background:var(--acento);color:var(--txt-acento);box-shadow:0 6px 24px var(--acento-suave)}
-.btn-principal:hover{background:var(--acento-2);transform:translateY(-2px)}
-.btn-outline{background:transparent;color:var(--branco);border:1.6px solid rgba(255,255,255,.32)}
+.btn{display:inline-flex;align-items:center;gap:10px;cursor:pointer;font-family:inherit;font-weight:700;font-size:.9rem;letter-spacing:.06em;text-transform:uppercase;border:0;padding:16px 30px;border-radius:6px;transition:transform .15s,background .15s,box-shadow .15s,color .15s}
+.btn-principal{background:var(--acento);color:var(--txt-acento);box-shadow:0 8px 22px rgba(47,109,255,.28)}
+.btn-principal:hover{background:var(--acento-2);transform:translateY(-2px);box-shadow:0 12px 28px rgba(47,109,255,.36)}
+.btn-outline{background:transparent;color:var(--forte);border:1.6px solid var(--linha)}
 .btn-outline:hover{border-color:var(--acento);color:var(--acento)}
 
 /* ============ HEADER ============ */
-.header{position:sticky;top:0;z-index:70;background:rgba(14,14,14,.82);backdrop-filter:saturate(160%) blur(12px);border-bottom:1px solid var(--linha)}
+.header{position:sticky;top:0;z-index:70;background:rgba(255,255,255,.85);backdrop-filter:saturate(160%) blur(12px);border-bottom:1px solid var(--linha)}
 .header .wrap{display:flex;align-items:center;justify-content:space-between;height:74px}
-.logo{display:flex;align-items:center;gap:11px;font-family:var(--display);text-transform:uppercase;font-size:1.35rem;color:#fff;letter-spacing:.02em}
-.logo .mono{width:38px;height:38px;border:2px solid var(--acento);color:var(--acento);display:grid;place-items:center;font-size:1.15rem;transform:skewX(-8deg)}
+.logo{display:flex;align-items:center;gap:11px;font-family:var(--display);text-transform:uppercase;font-size:1.35rem;color:var(--forte);letter-spacing:.02em}
+.logo .mono{width:38px;height:38px;background:var(--acento);color:#fff;display:grid;place-items:center;font-size:1.15rem;border-radius:8px;transform:skewX(-8deg)}
 .logo small{display:block;font-family:var(--fonte);font-size:.6rem;letter-spacing:.3em;color:var(--acento);font-weight:700}
 .nav{display:flex;align-items:center;gap:30px}
-.nav a{color:#cfcfcf;font-weight:600;font-size:.82rem;letter-spacing:.08em;text-transform:uppercase}
+.nav a{color:var(--suave);font-weight:600;font-size:.82rem;letter-spacing:.08em;text-transform:uppercase}
 .nav a:hover{color:var(--acento)}
 .header .btn{padding:11px 22px}
 @media(max-width:900px){.nav{display:none}}
@@ -102,15 +101,15 @@ h2{font-size:clamp(2rem,5vw,3.4rem)}
 /* ============ HERO ============ */
 .hero{position:relative;padding:70px 0 80px;overflow:hidden}
 .hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center;position:relative;z-index:2}
-.hero .lead{font-size:1.14rem;color:#d8d8d8;max-width:520px;margin:22px 0 32px}
+.hero .lead{font-size:1.14rem;color:var(--texto);max-width:520px;margin:22px 0 32px}
 .hero .acoes{display:flex;gap:14px;flex-wrap:wrap}
 .hero .reforco{margin-top:24px;font-size:.86rem;color:var(--suave)}
-.hero-foto{position:relative;height:520px;border-radius:4px;overflow:hidden;width:100%;
-  background:radial-gradient(120% 90% at 70% 20%,var(--acento-suave),transparent 55%),linear-gradient(160deg,#1c1c1c,#0b0b0b);
-  box-shadow:0 30px 60px rgba(0,0,0,.5)}
-.hero-foto::after{content:"FOTO PRINCIPAL";position:absolute;inset:0;display:grid;place-items:center;color:#3a3a3a;font-weight:700;letter-spacing:.15em;font-size:.75rem}
+.hero-foto{position:relative;height:520px;border-radius:12px;overflow:hidden;width:100%;
+  background:radial-gradient(120% 90% at 70% 20%,var(--acento-suave),transparent 55%),linear-gradient(160deg,#eef3fb,#f7f9fd);
+  border:1px solid var(--linha);box-shadow:var(--sombra-2)}
+.hero-foto::after{content:"FOTO PRINCIPAL";position:absolute;inset:0;display:grid;place-items:center;color:#b7c1cf;font-weight:700;letter-spacing:.15em;font-size:.75rem}
 .social-rail{position:absolute;left:0;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:16px;z-index:3}
-.social-rail a{color:#8a8a8a;font-size:1rem}.social-rail a:hover{color:var(--acento)}
+.social-rail a{color:#9aa5b1;font-size:1rem}.social-rail a:hover{color:var(--acento)}
 .social-rail::after{content:"";width:1px;height:60px;background:var(--linha);margin:6px auto 0}
 @media(max-width:900px){.hero .wrap{grid-template-columns:1fr}.hero-foto{height:340px;order:-1}.social-rail{display:none}}
 
@@ -124,64 +123,63 @@ h2{font-size:clamp(2rem,5vw,3.4rem)}
 
 /* ============ STORY ============ */
 .story .wrap{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
-.story-foto{position:relative;height:420px;border-radius:4px;overflow:hidden;
-  background:radial-gradient(100% 100% at 30% 30%,var(--acento-suave),transparent 60%),linear-gradient(160deg,#1e1e1e,#0a0a0a)}
-.play{position:absolute;inset:0;margin:auto;width:76px;height:76px;border:2px solid var(--acento);border-radius:50%;display:grid;place-items:center;color:var(--acento);font-size:1.4rem;background:rgba(0,0,0,.3)}
+.story-foto{position:relative;height:420px;border-radius:12px;overflow:hidden;border:1px solid var(--linha);box-shadow:var(--sombra);
+  background:radial-gradient(100% 100% at 30% 30%,var(--acento-suave),transparent 60%),linear-gradient(160deg,#eef3fb,#f7f9fd)}
+.play{position:absolute;inset:0;margin:auto;width:76px;height:76px;border:2px solid var(--acento);border-radius:50%;display:grid;place-items:center;color:var(--acento);font-size:1.4rem;background:rgba(255,255,255,.7)}
 @media(max-width:860px){.story .wrap{grid-template-columns:1fr}.story-foto{height:280px}}
 
 /* ============ FEATURES ============ */
-.features{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--linha);border-radius:4px;overflow:hidden}
+.features{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--linha);border-radius:12px;overflow:hidden;background:#fff;box-shadow:var(--sombra)}
 .feat{padding:40px 28px;text-align:center;border-left:1px solid var(--linha)}
 .feat:first-child{border-left:0}
 .feat .ico{font-size:2rem;margin-bottom:16px;color:var(--ac,var(--acento))}
-.feat h3{font-family:var(--display);text-transform:uppercase;color:#fff;font-size:1.25rem;letter-spacing:.02em;margin-bottom:10px}
+.feat h3{font-family:var(--display);text-transform:uppercase;color:var(--forte);font-size:1.25rem;letter-spacing:.02em;margin-bottom:10px}
 .feat p{font-size:.94rem;color:var(--suave)}
 @media(max-width:860px){.features{grid-template-columns:1fr 1fr}.feat:nth-child(3){border-left:0}}
 @media(max-width:520px){.features{grid-template-columns:1fr}.feat{border-left:0;border-top:1px solid var(--linha)}.feat:first-child{border-top:0}}
 
 /* ============ CTA full-bleed ============ */
 .cta-band{position:relative;padding:100px 0;background:
-  linear-gradient(90deg,rgba(10,10,10,.94) 30%,rgba(10,10,10,.55)),
-  radial-gradient(100% 140% at 85% 50%,var(--acento-suave),transparent 55%),
-  linear-gradient(160deg,#191919,#0a0a0a)}
+  radial-gradient(90% 130% at 85% 50%,var(--acento-suave),transparent 55%),
+  linear-gradient(160deg,#eaf1ff,#f4f8ff)}
 .cta-band h2{max-width:640px}
-.cta-band p{color:#d3d3d3;margin:18px 0 30px;font-size:1.1rem;max-width:520px}
+.cta-band p{color:var(--texto);margin:18px 0 30px;font-size:1.1rem;max-width:520px}
 
 /* ============ CARDS (produtos/serviços) ============ */
 .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
-.card{background:var(--bg-3);border:1px solid var(--linha);border-radius:6px;overflow:hidden;transition:transform .18s,border-color .18s}
-.card:hover{transform:translateY(-4px);border-color:var(--acento)}
-.card .capa{height:120px;display:grid;place-items:center;font-size:2.4rem;background:linear-gradient(160deg,var(--tint,var(--acento-suave)),transparent),#161616;border-bottom:1px solid var(--linha)}
+.card{background:var(--bg-3);border:1px solid var(--linha);border-radius:12px;overflow:hidden;box-shadow:var(--sombra);transition:transform .18s,box-shadow .18s,border-color .18s}
+.card:hover{transform:translateY(-4px);box-shadow:var(--sombra-2);border-color:var(--acento)}
+.card .capa{height:120px;display:grid;place-items:center;font-size:2.4rem;background:linear-gradient(160deg,var(--tint,var(--acento-suave)),transparent),#f2f5fa;border-bottom:1px solid var(--linha)}
 .card .corpo{padding:22px 22px 24px}
 .card .cat{color:var(--acento);font-weight:700;letter-spacing:.1em;text-transform:uppercase;font-size:.82rem;margin-bottom:8px}
-.card h3{color:#fff;font-size:1.15rem;margin-bottom:8px;font-weight:700}
+.card h3{color:var(--forte);font-size:1.15rem;margin-bottom:8px;font-weight:700}
 .card p{color:var(--suave);font-size:.92rem}
-.card .meta{margin-top:14px;font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;color:#7d7d7d;display:flex;gap:8px;align-items:center}
+.card .meta{margin-top:14px;font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;color:#9aa5b1;display:flex;gap:8px;align-items:center}
 @media(max-width:860px){.cards{grid-template-columns:1fr 1fr}}
 @media(max-width:560px){.cards{grid-template-columns:1fr}}
 
 /* ============ OFERTA ============ */
 .oferta{background:var(--bg-2)}
-.plano{max-width:560px;margin:0 auto;background:linear-gradient(160deg,#1c1c1c,#121212);border:1px solid var(--linha);border-top:3px solid var(--acento);border-radius:6px;padding:44px 40px;text-align:center}
-.badge{display:inline-block;background:var(--acento);color:var(--txt-acento);font-weight:700;font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;padding:6px 16px;border-radius:3px;margin-bottom:20px}
-.plano .preco{font-family:var(--display);color:#fff;font-size:3.2rem;line-height:1;margin:6px 0}
+.plano{max-width:560px;margin:0 auto;background:#fff;border:1px solid var(--linha);border-top:3px solid var(--acento);border-radius:12px;padding:44px 40px;text-align:center;box-shadow:var(--sombra-2)}
+.badge{display:inline-block;background:var(--acento);color:var(--txt-acento);font-weight:700;font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;padding:6px 16px;border-radius:4px;margin-bottom:20px}
+.plano .preco{font-family:var(--display);color:var(--forte);font-size:3.2rem;line-height:1;margin:6px 0}
 .plano .preco small{font-family:var(--fonte);font-size:1rem;font-weight:600;color:var(--suave)}
 .plano .de{color:var(--suave);text-decoration:line-through}
 .plano ul{list-style:none;margin:26px 0;text-align:left;display:grid;gap:13px;max-width:400px;margin-left:auto;margin-right:auto}
-.plano li{display:flex;gap:12px;color:#ddd;font-size:.98rem}
+.plano li{display:flex;gap:12px;color:var(--texto);font-size:.98rem}
 .plano li::before{content:"✓";color:var(--acento);font-weight:800}
 .plano .btn{width:100%;justify-content:center}
 .plano .obs{margin-top:14px;font-size:.8rem;color:var(--suave)}
 
 /* ============ ASSINATURA ============ */
-.assinatura .box{border:1px solid var(--acento);border-radius:6px;padding:44px 40px;text-align:center;background:var(--acento-suave)}
+.assinatura .box{border:1px solid var(--acento);border-radius:12px;padding:44px 40px;text-align:center;background:var(--acento-suave)}
 .assinatura .box h2{font-size:clamp(1.6rem,3.6vw,2.3rem)}
-.assinatura .box p{color:#e0e0e0;font-size:1.12rem;max-width:720px;margin:16px auto 0}
+.assinatura .box p{color:var(--texto);font-size:1.12rem;max-width:720px;margin:16px auto 0}
 
 /* ============ FAQ ============ */
 .faq{max-width:800px;margin:0 auto}
-.faq details{border:1px solid var(--linha);border-radius:5px;margin-bottom:12px;background:var(--bg-3);overflow:hidden}
-.faq summary{list-style:none;cursor:pointer;padding:20px 24px;font-weight:700;color:#fff;display:flex;justify-content:space-between;gap:14px;align-items:center}
+.faq details{border:1px solid var(--linha);border-radius:8px;margin-bottom:12px;background:#fff;overflow:hidden;box-shadow:var(--sombra)}
+.faq summary{list-style:none;cursor:pointer;padding:20px 24px;font-weight:700;color:var(--forte);display:flex;justify-content:space-between;gap:14px;align-items:center}
 .faq summary::-webkit-details-marker{display:none}
 .faq summary::after{content:"+";color:var(--acento);font-size:1.5rem;transition:transform .2s}
 .faq details[open] summary::after{transform:rotate(45deg)}
@@ -190,28 +188,28 @@ h2{font-size:clamp(2rem,5vw,3.4rem)}
 /* ============ CTA FINAL ============ */
 .final{text-align:center;background:radial-gradient(80% 120% at 50% 0%,var(--acento-suave),transparent 60%),var(--bg-2);border-top:1px solid var(--linha)}
 .final h2{max-width:820px;margin:0 auto}
-.final p{color:#d3d3d3;margin:16px auto 30px;font-size:1.1rem;max-width:560px}
+.final p{color:var(--texto);margin:16px auto 30px;font-size:1.1rem;max-width:560px}
 
 /* ============ RODAPÉ ============ */
-.footer{background:#080808;border-top:1px solid var(--linha);padding:60px 0 30px}
+.footer{background:var(--forte);color:rgba(255,255,255,.66);padding:60px 0 30px}
 .footer .wrap{display:flex;justify-content:space-between;gap:36px;flex-wrap:wrap}
-.footer .logo{margin-bottom:14px}
-.footer p,.footer a{font-size:.9rem;color:#9a9a9a}
-.footer a:hover{color:var(--acento)}
+.footer .logo{color:#fff;margin-bottom:14px}
+.footer .logo .mono{background:var(--acento);color:#fff}
+.footer .logo small{color:var(--acento)}
+.footer p,.footer a{font-size:.9rem;color:rgba(255,255,255,.66)}
+.footer a:hover{color:#fff}
 .footer .col h4{color:#fff;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:14px}
 .footer .col a,.footer .col p{display:block;margin-bottom:9px}
-.footer .base{border-top:1px solid var(--linha);margin-top:38px;padding-top:22px;text-align:center;font-size:.82rem;color:#6f6f6f}
+.footer .base{border-top:1px solid rgba(255,255,255,.14);margin-top:38px;padding-top:22px;text-align:center;font-size:.82rem;color:rgba(255,255,255,.5)}
 
 /* ============ WhatsApp flutuante ============ */
-.flutuante{position:fixed;bottom:24px;right:24px;z-index:75;background:#25D366;color:#fff;width:60px;height:60px;border-radius:50%;display:grid;place-items:center;font-size:1.7rem;box-shadow:0 8px 24px rgba(0,0,0,.4);transition:transform .15s}
+.flutuante{position:fixed;bottom:24px;right:24px;z-index:75;background:#25D366;color:#fff;width:60px;height:60px;border-radius:50%;display:grid;place-items:center;font-size:1.7rem;box-shadow:0 8px 24px rgba(0,0,0,.22);transition:transform .15s}
 .flutuante:hover{transform:scale(1.08)}
 
 .reveal{opacity:0;transform:translateY(24px);transition:opacity .6s,transform .6s}
 .reveal.show{opacity:1;transform:none}
 @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none}html{scroll-behavior:auto}}
 </style>
-
-<div class="frame"></div>
 
 <!-- ================= HEADER ================= -->
 <header class="header">
@@ -310,10 +308,10 @@ h2{font-size:clamp(2rem,5vw,3.4rem)}
     </div>
     <div class="cards">
       <div class="card reveal" style="--tint:var(--acento-suave)"><div class="capa">📦</div><div class="corpo"><div class="cat">Categoria</div><h3>Produto um</h3><p>Descreva em 1 frase o que este produto entrega ao cliente.</p><div class="meta">🕐 Destaque</div></div></div>
-      <div class="card reveal" style="--tint:rgba(107,168,201,.16)"><div class="capa">⭐</div><div class="corpo"><div class="cat">Categoria</div><h3>Produto dois</h3><p>Outro benefício ou serviço. Mantenha curto e direto.</p><div class="meta">🕐 Destaque</div></div></div>
-      <div class="card reveal" style="--tint:rgba(201,155,176,.16)"><div class="capa">🔥</div><div class="corpo"><div class="cat">Categoria</div><h3>Produto três</h3><p>Terceiro item. Use ícone/emoji que combine com o tema.</p><div class="meta">🕐 Destaque</div></div></div>
-      <div class="card reveal" style="--tint:rgba(139,185,143,.16)"><div class="capa">💎</div><div class="corpo"><div class="cat">Categoria</div><h3>Produto quatro</h3><p>Descrição curta e específica.</p><div class="meta">🕐 Destaque</div></div></div>
-      <div class="card reveal" style="--tint:rgba(201,185,139,.16)"><div class="capa">🚀</div><div class="corpo"><div class="cat">Categoria</div><h3>Produto cinco</h3><p>Descrição curta e específica.</p><div class="meta">🕐 Destaque</div></div></div>
+      <div class="card reveal" style="--tint:rgba(47,167,196,.12)"><div class="capa">⭐</div><div class="corpo"><div class="cat">Categoria</div><h3>Produto dois</h3><p>Outro benefício ou serviço. Mantenha curto e direto.</p><div class="meta">🕐 Destaque</div></div></div>
+      <div class="card reveal" style="--tint:rgba(192,106,142,.12)"><div class="capa">🔥</div><div class="corpo"><div class="cat">Categoria</div><h3>Produto três</h3><p>Terceiro item. Use ícone/emoji que combine com o tema.</p><div class="meta">🕐 Destaque</div></div></div>
+      <div class="card reveal" style="--tint:rgba(79,163,107,.12)"><div class="capa">💎</div><div class="corpo"><div class="cat">Categoria</div><h3>Produto quatro</h3><p>Descrição curta e específica.</p><div class="meta">🕐 Destaque</div></div></div>
+      <div class="card reveal" style="--tint:rgba(199,154,62,.12)"><div class="capa">🚀</div><div class="corpo"><div class="cat">Categoria</div><h3>Produto cinco</h3><p>Descrição curta e específica.</p><div class="meta">🕐 Destaque</div></div></div>
       <div class="card reveal" style="--tint:var(--acento-suave)"><div class="capa">🤝</div><div class="corpo"><div class="cat">Categoria</div><h3>Produto seis</h3><p>Descrição curta e específica.</p><div class="meta">🕐 Destaque</div></div></div>
     </div>
   </div>
